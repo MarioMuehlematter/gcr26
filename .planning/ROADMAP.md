@@ -3,7 +3,7 @@
 ## Phases
 
 - [x] **Phase 1: AR Engine Foundation** - Initialize AR environment and plane detection. (completed 2026-04-17)
-- [ ] **Phase 2: Spatial Serialization** - Implement local saving and loading of SLAM maps.
+- [x] **Phase 2: Spatial Serialization** - Implement local saving and loading of SLAM maps. (completed 2026-04-17)
 - [ ] **Phase 3: Site Recorder Tool** - Build the GM interface for scanning physical environments.
 - [ ] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues.
 - [ ] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression.
@@ -41,8 +41,8 @@
 **Plans**: 4 plans
 - [x] 02-01-PLAN.md — Storage Foundation & Metadata Types.
 - [x] 02-02-PLAN.md — Map Service & Binary Utilities.
-- [ ] 02-03-PLAN.md — Relocalization Logic & Hook Integration.
-- [ ] 02-04-PLAN.md — Visual Feedback & Loop Verification.
+- [x] 02-03-PLAN.md — Relocalization Logic & Hook Integration.
+- [x] 02-04-PLAN.md — Visual Feedback & Loop Verification.
 
 ### Phase 3: Site Recorder Tool
 **Goal**: Provide a mobile interface for Game Masters to map physical spaces.
@@ -143,7 +143,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
-| 2. Spatial Serialization | 2/4 | In Progress | - |
+| 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
 | 3. Site Recorder Tool | 0/0 | Not started | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
 | 5. Narrative State Logic | 0/0 | Not started | - |
