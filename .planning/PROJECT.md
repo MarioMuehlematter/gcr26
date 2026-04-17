@@ -19,7 +19,8 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Monorepo Structure** — Shared types and logic between Admin (Web) and Mobile (Expo).
 - ✓ **Location Services** — Background GPS tracking and proximity logic via `expo-location`.
 - ✓ **Admin Dashboard** — Web-based UI for managing games, quests, and players.
-- ✓ **Plane Detection (CORE-02)** — Verified in Phase 1: AR Engine Foundation.
+- ✓ **Plane Detection (CORE-02)** — Verified in Phase 1.
+- ✓ **Spatial Map Serialization (CORE-03)** — Verified in Phase 2 using Image Landmark Anchoring.
 
 ### Active (AR Engine Development)
 
@@ -44,6 +45,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 | **Offline-First Preloading** | Investigations often happen in "scary" or remote locations with poor signal (cellars). | **Approved** |
 | **Hybrid Navigation** | Use GPS to get to the "zone," then switch to local spatial coordinates for the hunt. | **Approved** |
 | **Authored Content Only** | Fixed locations allow for higher narrative quality and better environmental mapping. | **Approved** |
+| **Image Landmark Anchoring**| Adopted for Phase 2 Relocalization due to JS-bridge limitations for raw SLAM maps. | **Approved** |
 
 ## Evolution
 
@@ -63,4 +65,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 17, 2026 after Phase 1 completion*
+*Last updated: April 17, 2026 after Phase 2 completion*
