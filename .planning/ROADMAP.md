@@ -24,7 +24,10 @@
   1. App opens AR camera view without performance degradation or crashes.
   2. Plane detection markers reliably appear on physical floors and walls.
   3. A digital "origin" marker remains stable in physical space when moving the camera.
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 01-01-PLAN.md — Setup ViroReact and basic navigation.
+- [ ] 01-02-PLAN.md — Implement AR scene and tracking monitor.
+- [ ] 01-03-PLAN.md — Implement plane detection and visualization.
 **UI hint**: yes
 
 ### Phase 2: Spatial Serialization
@@ -135,7 +138,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. AR Engine Foundation | 0/0 | Not started | - |
+| 1. AR Engine Foundation | 0/3 | Not started | - |
 | 2. Spatial Serialization | 0/0 | Not started | - |
 | 3. Site Recorder Tool | 0/0 | Not started | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
