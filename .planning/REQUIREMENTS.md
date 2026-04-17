@@ -33,4 +33,18 @@
 - **Active Clue Interaction** - Discovery is purely visual for v1 (no "cleaning" or "extracting").
 
 ## Traceability
-*(To be filled by Roadmap phase)*
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| CORE-01 | Phase 4 | Pending |
+| CORE-02 | Phase 1 | Pending |
+| CORE-03 | Phase 2 | Pending |
+| CORE-04 | Phase 11 | Pending |
+| PLAY-01 | Phase 6 | Pending |
+| PLAY-02 | Phase 7 | Pending |
+| PLAY-03 | Phase 8 | Pending |
+| PLAY-04 | Phase 9 | Pending |
+| PLAY-05 | Phase 10 | Pending |
+| ADM-01 | Phase 3 | Pending |
+| ADM-02 | Phase 4 | Pending |
+| ADM-03 | Phase 5 | Pending |
