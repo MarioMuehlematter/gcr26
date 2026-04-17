@@ -41,10 +41,19 @@ export default function HomeScreen({ navigation }: any) {
       <View style={styles.container}>
         <Text style={styles.title}>GCR</Text>
         <Text style={styles.heading}>Hey, Admin!</Text>
-        <Text style={styles.message}>Looking for the admin panel?</Text>
+        <Text style={styles.message}>Manage the game or map new locations.</Text>
+        
+        <TouchableOpacity 
+          style={styles.recordButton} 
+          onPress={() => navigation.navigate('Recorder')}
+        >
+          <Text style={styles.adminButtonText}>Record New Site →</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.adminButton} onPress={() => Linking.openURL(ADMIN_URL)}>
           <Text style={styles.adminButtonText}>Open Admin Panel →</Text>
         </TouchableOpacity>
+        
         <TouchableOpacity style={styles.signOutButton} onPress={() => signOut(auth)}>
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
@@ -105,7 +114,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 14,
     borderRadius: 12,
-    marginBottom: 48,
+    marginBottom: 16,
+  },
+  recordButton: {
+    backgroundColor: '#27ae60', // Green for "recording/active" action
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 12,
+    marginBottom: 16,
   },
   adminButtonText: {
     color: '#fff',
