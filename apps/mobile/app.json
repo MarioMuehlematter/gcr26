@@ -59,6 +59,7 @@
         "projectId": "ec849fa3-413f-4770-a121-e51f1fa7a37a"
       }
     },
-    "owner": "timschaeren"
+    "owner": "timschaeren",
+    "newArchEnabled": true
   }
 }
