@@ -40,7 +40,7 @@
   3. Relocalization succeeds when returning to a previously mapped room within 10 seconds.
 **Plans**: 4 plans
 - [x] 02-01-PLAN.md — Storage Foundation & Metadata Types.
-- [ ] 02-02-PLAN.md — Map Service & Binary Utilities.
+- [x] 02-02-PLAN.md — Map Service & Binary Utilities.
 - [ ] 02-03-PLAN.md — Relocalization Logic & Hook Integration.
 - [ ] 02-04-PLAN.md — Visual Feedback & Loop Verification.
 
@@ -143,7 +143,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
-| 2. Spatial Serialization | 0/4 | Not started | - |
+| 2. Spatial Serialization | 2/4 | In Progress | - |
 | 3. Site Recorder Tool | 0/0 | Not started | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
 | 5. Narrative State Logic | 0/0 | Not started | - |
