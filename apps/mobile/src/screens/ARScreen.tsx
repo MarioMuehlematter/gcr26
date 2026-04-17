@@ -17,6 +17,7 @@ import {
 import { useARSession } from '../hooks/useARSession';
 import { storage, STORAGE_KEYS } from '../services/storage';
 import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
+import { RelocalizationOverlay } from '../components/RelocalizationOverlay';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
@@ -149,6 +150,9 @@ export default function ARScreen({ navigation }: any) {
         status={trackingStatus} 
         relocalizationStatus={relocalizationStatus}
       />
+
+      {/* Relocalization Feedback Overlay (CORE-03) */}
+      <RelocalizationOverlay visible={relocalizing} />
 
       {/* Debug Serialization Controls (Wave 3) */}
       <View style={styles.debugControls}>
