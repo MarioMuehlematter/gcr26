@@ -25,8 +25,8 @@
   2. Plane detection markers reliably appear on physical floors and walls.
   3. A digital "origin" marker remains stable in physical space when moving the camera.
 **Plans**: 3 plans
-- [ ] 01-01-PLAN.md — Setup ViroReact and basic navigation.
-- [ ] 01-02-PLAN.md — Implement AR scene and tracking monitor.
+- [x] 01-01-PLAN.md — Setup ViroReact and basic navigation.
+- [x] 01-02-PLAN.md — Implement AR scene and tracking monitor.
 - [ ] 01-03-PLAN.md — Implement plane detection and visualization.
 **UI hint**: yes
 
@@ -138,7 +138,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. AR Engine Foundation | 0/3 | Not started | - |
+| 1. AR Engine Foundation | 2/3 | In Progress|  |
 | 2. Spatial Serialization | 0/0 | Not started | - |
 | 3. Site Recorder Tool | 0/0 | Not started | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |

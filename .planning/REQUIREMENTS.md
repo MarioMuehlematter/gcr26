@@ -4,7 +4,7 @@
 
 ### AR Core & World Mapping
 - [ ] **CORE-01**: Precise SLAM Anchoring - Clues stay fixed to physical surfaces with minimal drift.
-- [ ] **CORE-02**: Plane Detection - Footprints and decals align correctly with detected floors/walls.
+- [x] **CORE-02**: Plane Detection - Footprints and decals align correctly with detected floors/walls.
 - [ ] **CORE-03**: Spatial Map Serialization - Save and load physical "site scans" for consistent clue placement.
 - [ ] **CORE-04**: Offline Preloading - Pre-cache maps and clue data for zero-connectivity environments.
 
@@ -37,7 +37,7 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | CORE-01 | Phase 4 | Pending |
-| CORE-02 | Phase 1 | Pending |
+| CORE-02 | Phase 1 | Complete |
 | CORE-03 | Phase 2 | Pending |
 | CORE-04 | Phase 11 | Pending |
 | PLAY-01 | Phase 6 | Pending |
