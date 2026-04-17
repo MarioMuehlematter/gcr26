@@ -2,7 +2,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: AR Engine Foundation** - Initialize AR environment and plane detection.
+- [x] **Phase 1: AR Engine Foundation** - Initialize AR environment and plane detection. (completed 2026-04-17)
 - [ ] **Phase 2: Spatial Serialization** - Implement local saving and loading of SLAM maps.
 - [ ] **Phase 3: Site Recorder Tool** - Build the GM interface for scanning physical environments.
 - [ ] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues.
@@ -27,7 +27,7 @@
 **Plans**: 3 plans
 - [x] 01-01-PLAN.md — Setup ViroReact and basic navigation.
 - [x] 01-02-PLAN.md — Implement AR scene and tracking monitor.
-- [ ] 01-03-PLAN.md — Implement plane detection and visualization.
+- [x] 01-03-PLAN.md — Implement plane detection and visualization.
 **UI hint**: yes
 
 ### Phase 2: Spatial Serialization
@@ -138,7 +138,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. AR Engine Foundation | 2/3 | In Progress|  |
+| 1. AR Engine Foundation | 3/3 | Complete   | 2026-04-17 |
 | 2. Spatial Serialization | 0/0 | Not started | - |
 | 3. Site Recorder Tool | 0/0 | Not started | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
