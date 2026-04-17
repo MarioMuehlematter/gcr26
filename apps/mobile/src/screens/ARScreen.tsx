@@ -14,6 +14,7 @@ import {
   ViroMaterials,
 } from '@reactvision/react-viro';
 import { useARSession } from '../hooks/useARSession';
+import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
@@ -43,6 +44,10 @@ const MainScene = (props: any) => {
         position={[0, 0.1, 0]}
         style={styles.originTextStyle}
       />
+
+      {/* Surface Detection Visualization (CORE-02, D-03, D-04) */}
+      <ARPlaneVisualization alignment="Horizontal" />
+      <ARPlaneVisualization alignment="Vertical" />
     </ViroARScene>
   );
 };
