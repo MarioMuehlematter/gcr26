@@ -16,7 +16,7 @@
 - [ ] **PLAY-05**: Evidence Log - 2D UI for reviewing found clues and narrative facts.
 
 ### Admin Authoring
-- [ ] **ADM-01**: Mobile Site Recorder - Tool for Game Masters to scan and map a physical room.
+- [x] **ADM-01**: Mobile Site Recorder - Tool for Game Masters to scan and map a physical room.
 - [ ] **ADM-02**: Clue Placer - AR tool to drop and orient clues onto physical planes.
 - [ ] **ADM-03**: Narrative Linker - Logic to connect clue discovery to game state (Linear Storyline).
 
@@ -45,6 +45,6 @@
 | PLAY-03 | Phase 8 | Pending |
 | PLAY-04 | Phase 9 | Pending |
 | PLAY-05 | Phase 10 | Pending |
-| ADM-01 | Phase 3 | Pending |
+| ADM-01 | Phase 3 | Complete |
 | ADM-02 | Phase 4 | Pending |
 | ADM-03 | Phase 5 | Pending |
