@@ -123,3 +123,21 @@ export interface Registration {
   registeredAt: number;
   approved: boolean;
 }
+
+// ─── Spatial Maps ─────────────────────────────────────────────────────────────
+
+export interface SpatialMapMetadata {
+  id: string;
+  name: string;
+  createdAt: number;
+  updatedAt: number;
+  version: string; // D-03: Versioned maps
+  deviceModel: string;
+  fileUri: string; // Path in Expo FileSystem
+  byteSize: number;
+}
+
+export interface SpatialMap {
+  metadata: SpatialMapMetadata;
+  data: string; // Base64 encoded or binary blob reference
+}
