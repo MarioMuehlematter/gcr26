@@ -52,7 +52,10 @@
   1. GM can see a visual overlay indicating which parts of the room are successfully mapped.
   2. GM receives real-time feedback (e.g. progress bar) during the scanning process.
   3. Completed scan sessions can be named and saved to the central database.
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 03-01-PLAN.md — Admin Access & Foundation.
+- [ ] 03-02-PLAN.md — Locking Logic & Progress Feedback.
+- [ ] 03-03-PLAN.md — Cloud Sync & Site Management.
 **UI hint**: yes
 
 ### Phase 4: Clue Placement Tool
@@ -144,7 +147,7 @@
 |-------|----------------|--------|-----------|
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
-| 3. Site Recorder Tool | 0/0 | Not started | - |
+| 3. Site Recorder Tool | 0/3 | In Progress | - |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
 | 5. Narrative State Logic | 0/0 | Not started | - |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
