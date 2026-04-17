@@ -16,6 +16,7 @@
       "bundleIdentifier": "com.gcr.app26",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Grand City Race uses the camera for the AR investigation experience.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "Grand City Race tracks your location in the background so your team's trail stays up to date on the map.",
         "NSLocationAlwaysUsageDescription": "Grand City Race tracks your location in the background so your team's trail stays up to date on the map.",
         "NSLocationWhenInUseUsageDescription": "Grand City Race uses your location to unlock nearby quests and show your position on the map."
@@ -40,6 +41,16 @@
         "expo-location",
         {
           "isIosBackgroundLocationEnabled": true
+        }
+      ],
+      [
+        "@reactvision/react-viro",
+        {
+          "ios": {
+            "includeARCore": true
+          },
+          "sceneSemantics": true,
+          "liDAROcclusion": true
         }
       ]
     ],
