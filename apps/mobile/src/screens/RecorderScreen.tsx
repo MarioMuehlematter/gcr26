@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {
   ViroARScene,
@@ -17,6 +18,8 @@ import {
 } from '@reactvision/react-viro';
 import { useRecorderSession } from '../hooks/useRecorderSession';
 import LockingProgressRing from '../components/LockingProgressRing';
+import SiteNamingModal from '../components/SiteNamingModal';
+import * as mapService from '../services/mapService';
 
 // Register a default tracking target for development/testing
 // In a real scenario, this might be dynamically loaded from a database
@@ -87,6 +90,7 @@ const RecorderScene = (props: any) => {
 export default function RecorderScreen({ navigation }: any) {
   const [initializing, setInitializing] = useState(true);
   const [trackingStatus, setTrackingStatus] = useState('UNAVAILABLE');
+  const [showNamingModal, setShowNamingModal] = useState(false);
   
   const {
     locking,
@@ -112,6 +116,33 @@ export default function RecorderScreen({ navigation }: any) {
     };
     setTrackingStatus(statusMap[state] || 'UNKNOWN');
   }, []);
+
+  const handleSave = async (siteName: string) => {
+    try {
+      // 1. Get current AR world map from Viro
+      // For now, we use a placeholder as map export is mocked/simulated in local dev
+      // In production, we would use scene.getCameraOrientationAsync() or similar if available
+      // or viro's map export feature.
+      const placeholderMapData = "bW9jay1zcGF0aWFsLW1hcC1kYXRh"; // "mock-spatial-map-data" in base64
+
+      // 2. Save locally
+      const metadata = await mapService.saveMap(siteName, placeholderMapData);
+
+      // 3. Sync to Cloud
+      await mapService.syncMapToCloud(metadata, 'default_marker');
+
+      setShowNamingModal(false);
+      
+      Alert.alert(
+        "Success",
+        "Site origin saved successfully to cloud.",
+        [{ text: "OK", onPress: () => navigation.navigate('Home') }]
+      );
+    } catch (error: any) {
+      console.error('Save failed:', error);
+      throw error; // Re-throw to show in modal
+    }
+  };
 
   if (initializing) {
     return (
@@ -143,6 +174,13 @@ export default function RecorderScreen({ navigation }: any) {
         onComplete={completeLock} 
       />
 
+      {/* Site Naming Modal */}
+      <SiteNamingModal
+        visible={showNamingModal}
+        onClose={() => setShowNamingModal(false)}
+        onSave={handleSave}
+      />
+
       {/* HUD */}
       <View style={styles.hudContainer}>
         <View style={styles.hud}>
@@ -171,13 +209,28 @@ export default function RecorderScreen({ navigation }: any) {
           <Text style={styles.buttonText}>Exit</Text>
         </TouchableOpacity>
 
+        {!locked && (
+          <View style={styles.actionButton}>
+             <Text style={styles.buttonText}>Scan Landmark</Text>
+          </View>
+        )}
+
         {locked && (
-          <TouchableOpacity
-            style={[styles.actionButton, styles.resetButton]}
-            onPress={reset}
-          >
-            <Text style={styles.buttonText}>Reset Origin</Text>
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity
+              style={[styles.actionButton, styles.resetButton]}
+              onPress={reset}
+            >
+              <Text style={styles.buttonText}>Reset</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.actionButton, styles.saveButton]}
+              onPress={() => setShowNamingModal(true)}
+            >
+              <Text style={styles.buttonText}>Save Site</Text>
+            </TouchableOpacity>
+          </>
         )}
       </View>
     </View>
@@ -231,6 +284,9 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     backgroundColor: 'rgba(192, 57, 43, 0.6)',
+  },
+  saveButton: {
+    backgroundColor: 'rgba(46, 204, 113, 0.6)',
   },
   buttonText: {
     color: '#fff',
