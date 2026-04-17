@@ -58,6 +58,9 @@ export async function saveMap(name: string, data: string): Promise<SpatialMapMet
   index.push(id);
   storage.set(STORAGE_KEYS.MAPS_INDEX, JSON.stringify(index));
 
+  // Record as last used map for relocalization testing (D-05)
+  storage.set(STORAGE_KEYS.LAST_MAP_ID, id);
+
   return metadata;
 }
 

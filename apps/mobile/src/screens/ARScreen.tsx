@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {
   ViroARScene,
@@ -14,6 +15,7 @@ import {
   ViroMaterials,
 } from '@reactvision/react-viro';
 import { useARSession } from '../hooks/useARSession';
+import { storage, STORAGE_KEYS } from '../services/storage';
 import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
 
 // Define materials for AR objects
@@ -55,20 +57,45 @@ const MainScene = (props: any) => {
 /**
  * HUD component to display tracking status over the AR view.
  */
-const HUD = ({ status }: { status: string }) => (
-  <View style={styles.hud}>
-    <Text style={styles.hudLabel}>Status:</Text>
-    <Text style={[
-      styles.hudStatus,
-      status === 'TRACKING' ? styles.statusGreen : styles.statusYellow
-    ]}>
-      {status}
-    </Text>
+const HUD = ({ status, relocalizationStatus }: { 
+  status: string, 
+  relocalizationStatus: string 
+}) => (
+  <View style={styles.hudContainer}>
+    <View style={styles.hud}>
+      <Text style={styles.hudLabel}>Tracking:</Text>
+      <Text style={[
+        styles.hudStatus,
+        status === 'TRACKING' ? styles.statusGreen : styles.statusYellow
+      ]}>
+        {status}
+      </Text>
+    </View>
+    
+    {relocalizationStatus !== 'NONE' && (
+      <View style={[styles.hud, { marginTop: 8 }]}>
+        <Text style={styles.hudLabel}>Relocalize:</Text>
+        <Text style={[
+          styles.hudStatus,
+          relocalizationStatus === 'SUCCESS' ? styles.statusGreen : 
+          relocalizationStatus === 'FAILED' ? styles.statusRed : styles.statusYellow
+        ]}>
+          {relocalizationStatus}
+        </Text>
+      </View>
+    )}
   </View>
 );
 
 export default function ARScreen({ navigation }: any) {
-  const { trackingStatus, onTrackingUpdated } = useARSession();
+  const { 
+    trackingStatus, 
+    onTrackingUpdated,
+    relocalizing,
+    relocalizationStatus,
+    saveCurrentMap,
+    loadMapAndRelocalize
+  } = useARSession();
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
@@ -78,6 +105,24 @@ export default function ARScreen({ navigation }: any) {
     }, 500);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSaveMap = async () => {
+    try {
+      await saveCurrentMap(`Manual Save ${new Date().toLocaleTimeString()}`);
+      Alert.alert('Success', 'Spatial map saved successfully!');
+    } catch (e) {
+      Alert.alert('Error', 'Failed to save spatial map');
+    }
+  };
+
+  const handleLoadLastMap = async () => {
+    const lastId = storage.getString(STORAGE_KEYS.LAST_MAP_ID);
+    if (!lastId) {
+      Alert.alert('Info', 'No saved map found to load.');
+      return;
+    }
+    await loadMapAndRelocalize(lastId);
+  };
 
   if (initializing) {
     return (
@@ -93,14 +138,33 @@ export default function ARScreen({ navigation }: any) {
       <ViroARSceneNavigator
         autofocus={true}
         initialScene={{
-          scene: MainScene,
+          scene: MainScene as any,
         }}
         viroAppProps={{ onTrackingUpdated }}
         style={styles.f1}
       />
       
       {/* Tracking Status HUD */}
-      <HUD status={trackingStatus} />
+      <HUD 
+        status={trackingStatus} 
+        relocalizationStatus={relocalizationStatus}
+      />
+
+      {/* Debug Serialization Controls (Wave 3) */}
+      <View style={styles.debugControls}>
+        <TouchableOpacity style={styles.debugButton} onPress={handleSaveMap}>
+          <Text style={styles.debugButtonText}>Save Map</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={[styles.debugButton, relocalizing && styles.buttonDisabled]} 
+          onPress={handleLoadLastMap}
+          disabled={relocalizing}
+        >
+          <Text style={styles.debugButtonText}>
+            {relocalizing ? 'Relocalizing...' : 'Load Last Map'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       {/* Navigation Controls */}
       <TouchableOpacity
@@ -148,10 +212,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
   },
-  hud: {
+  hudContainer: {
     position: 'absolute',
     top: 50,
     right: 20,
+    alignItems: 'flex-end',
+  },
+  hud: {
     padding: 12,
     backgroundColor: 'rgba(0,0,0,0.6)',
     borderRadius: 8,
@@ -177,5 +244,33 @@ const styles = StyleSheet.create({
   },
   statusYellow: {
     color: '#FACC15',
+  },
+  statusRed: {
+    color: '#EF4444',
+  },
+  debugControls: {
+    position: 'absolute',
+    bottom: 100,
+    left: 20,
+    right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  debugButton: {
+    flex: 0.48,
+    padding: 15,
+    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+    borderRadius: 10,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  buttonDisabled: {
+    backgroundColor: 'rgba(156, 163, 175, 0.5)',
+  },
+  debugButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
