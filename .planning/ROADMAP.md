@@ -147,7 +147,7 @@
 |-------|----------------|--------|-----------|
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
-| 3. Site Recorder Tool | 3/3 | Complete   | 2026-04-17 |
+| 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
 | 4. Clue Placement Tool | 0/0 | Not started | - |
 | 5. Narrative State Logic | 0/0 | Not started | - |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
