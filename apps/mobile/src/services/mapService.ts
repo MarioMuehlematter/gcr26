@@ -1,9 +1,11 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
+import { collection, doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 import { storage, STORAGE_KEYS } from './storage';
 import { SpatialMap, SpatialMapMetadata } from '@gcr26/shared';
 
-const MAPS_DIRECTORY = `${FileSystem.documentDirectory}spatial_maps/`;
+const MAPS_DIRECTORY = `${FileSystem.Paths.document.uri}spatial_maps/`;
 
 /**
  * Ensures the maps directory exists.
@@ -30,7 +32,7 @@ export async function saveMap(name: string, data: string): Promise<SpatialMapMet
 
   // Write binary data to file system
   await FileSystem.writeAsStringAsync(fileUri, data, {
-    encoding: FileSystem.EncodingType.Base64,
+    encoding: 'base64',
   });
 
   const fileInfo = await FileSystem.getInfoAsync(fileUri);
@@ -46,7 +48,7 @@ export async function saveMap(name: string, data: string): Promise<SpatialMapMet
     version: '1.0.0', // Initial versioning
     deviceModel: Platform.select({ ios: 'iOS Device', android: 'Android Device', default: 'Unknown' }),
     fileUri,
-    byteSize: fileInfo.size,
+    byteSize: fileInfo.size || 0,
   };
 
   // Store metadata in MMKV
@@ -87,7 +89,7 @@ export async function getMap(id: string): Promise<SpatialMap | null> {
 
   try {
     const data = await FileSystem.readAsStringAsync(metadata.fileUri, {
-      encoding: FileSystem.EncodingType.Base64,
+      encoding: 'base64',
     });
 
     return {
@@ -119,4 +121,22 @@ export function listMaps(): SpatialMapMetadata[] {
     console.error('Failed to parse maps index:', e);
     return [];
   }
+}
+
+/**
+ * Synchronizes a local spatial map to Firestore.
+ * 
+ * @param metadata - The metadata of the local map
+ * @param targetImageId - The landmark/image ID this map is anchored to
+ */
+export async function syncMapToCloud(metadata: SpatialMapMetadata, targetImageId: string): Promise<string> {
+  const mapRef = doc(collection(db, 'spatial_maps'));
+  
+  await setDoc(mapRef, {
+    ...metadata,
+    targetImageId,
+    cloudSyncAt: serverTimestamp(),
+  });
+
+  return mapRef.id;
 }
