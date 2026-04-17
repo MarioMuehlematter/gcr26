@@ -10,7 +10,7 @@ import GameScreen from './GameScreen';
 
 const ADMIN_URL = 'https://gcr26-dev.netlify.app';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: any) {
   const { profile, loading } = useUser();
   const { user } = useAuth();
 
@@ -59,6 +59,12 @@ export default function HomeScreen() {
       <Text style={styles.message}>
         Your admins will assign you to a team soon.
       </Text>
+      <TouchableOpacity
+        style={styles.arButton}
+        onPress={() => navigation.navigate('AR')}
+      >
+        <Text style={styles.arButtonText}>Start Investigation</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.signOutButton} onPress={() => signOut(auth)}>
         <Text style={styles.signOutText}>Sign Out</Text>
       </TouchableOpacity>
@@ -102,6 +108,18 @@ const styles = StyleSheet.create({
     marginBottom: 48,
   },
   adminButtonText: {
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  arButton: {
+    backgroundColor: '#3498db',
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 12,
+    marginBottom: 48,
+  },
+  arButtonText: {
     color: '#fff',
     fontSize: 15,
     fontWeight: '600',
