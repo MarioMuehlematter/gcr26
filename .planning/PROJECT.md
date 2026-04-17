@@ -20,16 +20,17 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Location Services** — Background GPS tracking and proximity logic via `expo-location`.
 - ✓ **Admin Dashboard** — Web-based UI for managing games, quests, and players.
 - ✓ **Plane Detection (CORE-02)** — Verified in Phase 1.
-- ✓ **Spatial Map Serialization (CORE-03)** — Verified in Phase 2 using Image Landmark Anchoring.
+- ✓ **Spatial Map Serialization (CORE-03)** — Verified in Phase 2.
+- ✓ **Spatial Mapping Interface (ADM-01)** — Verified in Phase 3; GMs can record and sync sites.
 
 ### Active (AR Engine Development)
 
-- [ ] **Spatial Mapping Interface** — Tools for game masters to "record" and map physical spaces (cellars, parks).
 - [ ] **Offline Clue Persistence** — Ability to preload spatial maps and clue data for areas without connectivity.
 - [ ] **Hybrid Positioning** — Using GPS for area navigation and local spatial anchors for precise AR placement.
 - [ ] **Visual Discovery Logic** — Hidden clues that only manifest when viewed through the AR lens within specific range/orientation.
 - [ ] **Linear Investigation State** — Game state updates that trigger the next clue only after the previous one is "discovered."
 - [ ] **AR Rendering Pipeline** — Integration of `expo-gl` or a similar engine to render high-quality "witcher-style" indicators (trails, glows).
+- [ ] **Clue Placement Tool (ADM-02, CORE-01)** — AR tool to drop and orient clues on planes.
 
 ### Out of Scope
 
@@ -45,7 +46,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 | **Offline-First Preloading** | Investigations often happen in "scary" or remote locations with poor signal (cellars). | **Approved** |
 | **Hybrid Navigation** | Use GPS to get to the "zone," then switch to local spatial coordinates for the hunt. | **Approved** |
 | **Authored Content Only** | Fixed locations allow for higher narrative quality and better environmental mapping. | **Approved** |
-| **Image Landmark Anchoring**| Adopted for Phase 2 Relocalization due to JS-bridge limitations for raw SLAM maps. | **Approved** |
+| **Image Landmark Anchoring**| Adopted for Phase 2/3 Relocalization due to JS-bridge limitations for raw SLAM maps. | **Approved** |
 
 ## Evolution
 
@@ -65,4 +66,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 17, 2026 after Phase 2 completion*
+*Last updated: April 17, 2026 after Phase 3 completion*
