@@ -19,6 +19,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Monorepo Structure** — Shared types and logic between Admin (Web) and Mobile (Expo).
 - ✓ **Location Services** — Background GPS tracking and proximity logic via `expo-location`.
 - ✓ **Admin Dashboard** — Web-based UI for managing games, quests, and players.
+- ✓ **Plane Detection (CORE-02)** — Verified in Phase 1: AR Engine Foundation.
 
 ### Active (AR Engine Development)
 
@@ -62,4 +63,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 17, 2026 after initialization*
+*Last updated: April 17, 2026 after Phase 1 completion*
