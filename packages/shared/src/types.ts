@@ -135,6 +135,7 @@ export interface SpatialMapMetadata {
   deviceModel: string;
   fileUri: string; // Path in Expo FileSystem
   byteSize: number;
+  targetImageId: string;
 }
 
 export interface SpatialMap {
