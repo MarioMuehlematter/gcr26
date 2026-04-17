@@ -54,7 +54,7 @@
   3. Completed scan sessions can be named and saved to the central database.
 **Plans**: 3 plans
 - [x] 03-01-PLAN.md — Admin Access & Foundation.
-- [ ] 03-02-PLAN.md — Locking Logic & Progress Feedback.
+- [x] 03-02-PLAN.md — Locking Logic & Progress Feedback.
 - [ ] 03-03-PLAN.md — Cloud Sync & Site Management.
 **UI hint**: yes
 
