@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-last_updated: "2026-04-18T23:54:35.774Z"
+status: Ready to execute
+last_updated: "2026-04-18T23:58:35.774Z"
 progress:
   total_phases: 11
   completed_phases: 7
-  total_plans: 21
+  total_plans: 24
   completed_plans: 21
-  percent: 100
+  percent: 87
 ---
 
 # Project State: Witcher Senses AR Engine
@@ -17,19 +17,19 @@ progress:
 ## Project Reference
 
 **Core Value**: High-fidelity AR investigation layer with stable, offline-capable digital clues anchored precisely to the physical environment.
-**Current Focus**: Phase 7 - Clue Guidance (Pulse/Glow).
+**Current Focus**: Phase 8 - Footstep Trails.
 
 ## Current Position
 
-**Phase**: 7 - Clue Guidance (Pulse/Glow)
-**Plan**: 01/02
-**Status**: In Progress
-**Progress**: [█████░░░░░] 50%
+**Phase**: 8 - Footstep Trails
+**Plan**: 01/03
+**Status**: Ready
+**Progress**: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 - **Requirement Coverage**: 100% (13/13 v1 requirements mapped)
-- **Phase Completion**: 6/11
+- **Phase Completion**: 7/11
 - **Critical Path**: AR Foundation -> Site Recorder -> Clue Placement -> Player Loop
 
 ## Accumulated Context
@@ -70,6 +70,12 @@ progress:
 - [Phase 6]: D-06-03-01: Hidden standard HUD/Debug controls when senses are active to maintain focus on investigation.
 - [Phase 07-01]: D-07-01-01: Angle-based HUD Opacity - Auras become brighter (up to 0.8 opacity) as the player turns toward the target.
 - [Phase 07-01]: D-07-01-02: SVG Gradients for Auras - Used react-native-svg for smooth directional indicators.
+- [Phase 08]: D-08-01: Segmented Footprint Decals.
+- [Phase 08]: D-08-02: Alternating Stride.
+- [Phase 08]: D-08-03: Linear Interpolation (Lerp).
+- [Phase 08]: D-08-04: Stride Frequency (0.6m).
+- [Phase 08]: D-08-05: Path Segment Unlock (Discovery based).
+- [Phase 08]: D-08-06: Proximity Fade (3m).
 
 ### Blockers
 
@@ -77,5 +83,5 @@ progress:
 
 ### Session Continuity
 
-- **Last Action**: Completed Phase 6 - Plan 02 (Interactive Activation & Overlay).
-- **Next Step**: Phase 6 - Plan 03 (System Integration).
+- **Last Action**: Planned Phase 8 - Footstep Trails.
+- **Next Step**: Phase 8 - Plan 01 (Data Model & Pathing Logic).
