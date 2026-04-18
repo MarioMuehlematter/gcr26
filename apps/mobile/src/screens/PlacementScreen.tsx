@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import {
   ViroARImageMarker,
   ViroARTrackingTargets,
 } from '@reactvision/react-viro';
+import { Clue } from '@gcr26/shared';
 import { useRecorderSession } from '../hooks/useRecorderSession';
 import { useCluePlacement } from '../hooks/useCluePlacement';
 import LockingProgressRing from '../components/LockingProgressRing';
@@ -51,14 +52,81 @@ const PlacementScene = (props: any) => {
     onImageMarkerFound, 
     locked,
     placedClues,
+    selectedClueType,
+    addClue,
+    updateClueRotation,
+    landmarkPos,
+    setLandmarkPos
   } = props.arSceneNavigator.viroAppProps;
 
+  const [ghostClue, setGhostClue] = useState<Clue | null>(null);
+  const sceneRef = useRef<any>(null);
+
+  // Interaction Logic: Relative Math (D-03)
+  const handleSceneClick = useCallback((clickPos: [number, number, number]) => {
+    if (!locked || !selectedClueType) return;
+    
+    // Calculate position relative to landmark
+    const relPos: [number, number, number] = [
+      clickPos[0] - landmarkPos[0],
+      clickPos[1] - landmarkPos[1],
+      clickPos[2] - landmarkPos[2],
+    ];
+    
+    addClue(relPos);
+  }, [locked, selectedClueType, landmarkPos, addClue]);
+
+  // Snap-to-Plane Preview (Checker Issue 3)
+  const onCameraTransformUpdate = useCallback(async (cameraTransform: any) => {
+    // Only show ghost if we are locked and have a selection
+    if (!locked || !selectedClueType || !sceneRef.current) {
+      if (ghostClue) setGhostClue(null);
+      return;
+    }
+
+    // Perform hit test with camera forward to find planes
+    try {
+      const results = await sceneRef.current.performARHitTestWithRay(cameraTransform.forward);
+      
+      if (results && results.length > 0) {
+        const hit = results[0]; // Nearest surface
+        const relPos: [number, number, number] = [
+          hit.transform.position[0] - landmarkPos[0],
+          hit.transform.position[1] - landmarkPos[1],
+          hit.transform.position[2] - landmarkPos[2],
+        ];
+        
+        setGhostClue({
+          id: 'ghost',
+          type: selectedClueType,
+          position: relPos,
+          rotation: [0, 0, 0],
+          scale: [1, 1, 1],
+          metadata: {}
+        });
+      } else {
+        setGhostClue(null);
+      }
+    } catch (e) {
+      // Hit test might fail if scene is not ready
+      setGhostClue(null);
+    }
+  }, [locked, selectedClueType, landmarkPos, ghostClue]);
+
   return (
-    <ViroARScene onTrackingUpdated={onTrackingUpdated}>
+    <ViroARScene 
+      ref={sceneRef}
+      onTrackingUpdated={onTrackingUpdated}
+      onClick={(pos: any) => handleSceneClick(pos)}
+      onCameraTransformUpdate={onCameraTransformUpdate}
+    >
       {/* Physical Landmark Origin */}
       <ViroARImageMarker 
         target="default_marker"
-        onAnchorFound={onImageMarkerFound}
+        onAnchorFound={(anchor: any) => {
+          setLandmarkPos(anchor.position);
+          onImageMarkerFound(anchor);
+        }}
       >
         <ViroBox
           position={[0, 0, 0]}
@@ -68,8 +136,17 @@ const PlacementScene = (props: any) => {
         
         {/* Placed Clues relative to marker */}
         {locked && placedClues.map((clue: any) => (
-          <ClueBillboard key={clue.id} clue={clue} />
+          <ClueBillboard 
+            key={clue.id} 
+            clue={clue} 
+            onRotate={(newRot) => updateClueRotation(clue.id, newRot)}
+          />
         ))}
+
+        {/* Ghost Preview with Highlight */}
+        {ghostClue && (
+          <ClueBillboard clue={ghostClue} highlighted={true} />
+        )}
       </ViroARImageMarker>
 
       {/* Surface Detection Visualization */}
@@ -84,6 +161,7 @@ export default function PlacementScreen({ navigation, route }: any) {
   const [initializing, setInitializing] = useState(true);
   const [trackingStatus, setTrackingStatus] = useState('UNAVAILABLE');
   const [showMapModal, setShowMapModal] = useState(false);
+  const [landmarkPos, setLandmarkPos] = useState<[number, number, number]>([0, 0, 0]);
   
   const {
     locking,
@@ -165,7 +243,9 @@ export default function PlacementScreen({ navigation, route }: any) {
           placedClues,
           selectedClueType,
           addClue,
-          updateClueRotation
+          updateClueRotation,
+          landmarkPos,
+          setLandmarkPos
         }}
         style={styles.f1}
       />

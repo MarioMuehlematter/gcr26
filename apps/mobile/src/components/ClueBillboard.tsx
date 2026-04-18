@@ -28,27 +28,41 @@ ViroMaterials.createMaterials({
 interface ClueBillboardProps {
   clue: Clue;
   highlighted?: boolean;
+  onRotate?: (newRotation: [number, number, number]) => void;
 }
 
 /**
  * A Viro component that renders a clue as a ground-aligned decal.
  * Supports visual highlighting to provide feedback during placement or selection.
  */
-export const ClueBillboard: React.FC<ClueBillboardProps> = ({ clue, highlighted = false }) => {
+export const ClueBillboard: React.FC<ClueBillboardProps> = ({ 
+  clue, 
+  highlighted = false,
+  onRotate
+}) => {
   // Map clue type to material name defined above
   const materialName = `${clue.type}Material`;
-  
+
   // Apply the base material, and overlay highlight if active
   const materials = [materialName];
   if (highlighted) {
     materials.push('green_highlight');
   }
 
+  const handleRotate = (rotateState: number, rotationFactor: number) => {
+    if (rotateState === 3 && onRotate) { // 3 is RotateEnd
+      const currentY = clue.rotation[1];
+      // rotationFactor is in degrees for Viro onRotate
+      onRotate([0, currentY - rotationFactor, 0]);
+    }
+  };
+
   return (
     <ViroNode
       position={clue.position}
       rotation={clue.rotation}
       scale={clue.scale}
+      onRotate={handleRotate}
     >
       {/* 
         ViroQuad is used as a decal. 
