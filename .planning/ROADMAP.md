@@ -7,7 +7,7 @@
 - [x] **Phase 3: Site Recorder Tool** - Build the GM interface for scanning physical environments. (completed 2026-04-17)
 - [x] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues. (completed 2026-04-18)
 - [x] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression. (completed 2026-04-18)
-- [ ] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI.
+- [x] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI. (completed 2026-04-18)
 - [ ] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues.
 - [ ] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system.
 - [ ] **Phase 9: Proximity Discovery** - Implement range-based clue reveal and detection.
@@ -96,7 +96,7 @@
 **Plans**: 3 plans
 - [x] 06-01-PLAN.md — Witcher Senses Foundation.
 - [x] 06-02-PLAN.md — Interactive Activation & Overlay.
-- [ ] 06-03-PLAN.md — HUD & Integration.
+- [x] 06-03-PLAN.md — HUD & Integration.
 **UI hint**: yes
 
 ### Phase 7: Clue Guidance (Pulse/Glow)
@@ -159,7 +159,7 @@
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
-| 6. Witcher Senses UI & Filter | 1/3 | In Progress|  |
+| 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
 | 9. Proximity Discovery | 0/0 | Not started | - |

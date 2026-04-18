@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-last_updated: "2026-04-18T22:27:49.962Z"
+status: Ready to plan
+last_updated: "2026-04-18T23:13:28.287Z"
 progress:
   total_phases: 11
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 19
-  completed_plans: 18
-  percent: 95
+  completed_plans: 19
+  percent: 100
 ---
 
 # Project State: Witcher Senses AR Engine
@@ -17,19 +17,19 @@ progress:
 ## Project Reference
 
 **Core Value**: High-fidelity AR investigation layer with stable, offline-capable digital clues anchored precisely to the physical environment.
-**Current Focus**: Phase 6 - Witcher Senses UI & Filter.
+**Current Focus**: Phase 7 - Clue Guidance (Pulse/Glow).
 
 ## Current Position
 
-**Phase**: 6 - Witcher Senses UI & Filter
-**Plan**: 02/03
-**Status**: In Progress
-**Progress**: [██████░░░░] 66%
+**Phase**: 7 - Clue Guidance (Pulse/Glow)
+**Plan**: 00/00
+**Status**: Ready to start
+**Progress**: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 - **Requirement Coverage**: 100% (13/13 v1 requirements mapped)
-- **Phase Completion**: 5/11
+- **Phase Completion**: 6/11
 - **Critical Path**: AR Foundation -> Site Recorder -> Clue Placement -> Player Loop
 
 ## Accumulated Context
@@ -67,6 +67,7 @@ progress:
 - [Phase 6]: D-06-01-02: Implement highlight as an overlay material in ClueBillboard.
 - [Phase 06]: D-06-02-01: Use pointerEvents="none" for visual overlay to avoid blocking AR scene interactions.
 - [Phase 06]: D-06-02-02: Use hold-to-activate (onPressIn/Out) interaction for immersive hunting mode simulation.
+- [Phase 6]: D-06-03-01: Hidden standard HUD/Debug controls when senses are active to maintain focus on investigation.
 
 ### Blockers
 
