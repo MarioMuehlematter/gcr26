@@ -18,7 +18,7 @@
 ### Admin Authoring
 - [x] **ADM-01**: Mobile Site Recorder - Tool for Game Masters to scan and map a physical room.
 - [x] **ADM-02**: Clue Placer - AR tool to drop and orient clues onto physical planes.
-- [ ] **ADM-03**: Narrative Linker - Logic to connect clue discovery to game state (Linear Storyline).
+- [x] **ADM-03**: Narrative Linker - Logic to connect clue discovery to game state (Linear Storyline).
 
 ## v2 Requirements (Deferred)
 - **CORE-05**: Environmental Occlusion - Hiding clues behind/under real objects (requires LiDAR).
@@ -47,4 +47,4 @@
 | PLAY-05 | Phase 10 | Pending |
 | ADM-01 | Phase 3 | Complete |
 | ADM-02 | Phase 4 | Complete |
-| ADM-03 | Phase 5 | Pending |
+| ADM-03 | Phase 5 | Complete |
