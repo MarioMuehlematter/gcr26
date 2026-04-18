@@ -93,7 +93,10 @@
   1. Player can toggle a high-contrast AR post-processing filter.
   2. HUD elements (compass, status indicators) adapt visually to "Witcher Sense" mode.
   3. Ambient world sounds are muffled/distorted while the sense is active.
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 06-01-PLAN.md — Witcher Senses Foundation.
+- [ ] 06-02-PLAN.md — Interactive Activation & Overlay.
+- [ ] 06-03-PLAN.md — HUD & Integration.
 **UI hint**: yes
 
 ### Phase 7: Clue Guidance (Pulse/Glow)
@@ -156,7 +159,7 @@
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
-| 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
+| 6. Witcher Senses UI & Filter | 0/3 | In Progress | - |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
 | 9. Proximity Discovery | 0/0 | Not started | - |
