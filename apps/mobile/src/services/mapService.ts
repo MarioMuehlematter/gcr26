@@ -1,9 +1,9 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
-import { collection, doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import { storage, STORAGE_KEYS } from './storage';
-import { SpatialMap, SpatialMapMetadata } from '@gcr26/shared';
+import { SpatialMap, SpatialMapMetadata, Clue } from '@gcr26/shared';
 
 const MAPS_DIRECTORY = `${FileSystem.Paths.document.uri}spatial_maps/`;
 
@@ -22,9 +22,10 @@ async function ensureDirectoryExists(): Promise<void> {
  * 
  * @param name - Display name for the map
  * @param data - Base64 encoded spatial map data
+ * @param targetImageId - The ID of the physical landmark used for anchoring (D-04)
  * @returns Metadata of the saved map
  */
-export async function saveMap(name: string, data: string): Promise<SpatialMapMetadata> {
+export async function saveMap(name: string, data: string, targetImageId: string = 'default_marker'): Promise<SpatialMapMetadata> {
   await ensureDirectoryExists();
 
   const id = `map_${Date.now()}_${Math.random().toString(36).substring(7)}`;
@@ -46,9 +47,11 @@ export async function saveMap(name: string, data: string): Promise<SpatialMapMet
     createdAt: Date.now(),
     updatedAt: Date.now(),
     version: '1.0.0', // Initial versioning
-    deviceModel: Platform.select({ ios: 'iOS Device', android: 'Android Device', default: 'Unknown' }),
+    deviceModel: Platform.select({ ios: 'iOS Device', android: 'Android Device', default: 'Unknown' }) || 'Unknown',
     fileUri,
     byteSize: fileInfo.size || 0,
+    targetImageId, // Added for Phase 3 Gap Closure
+    clueCount: 0, // Initialized for Phase 4
   };
 
   // Store metadata in MMKV
@@ -139,4 +142,38 @@ export async function syncMapToCloud(metadata: SpatialMapMetadata, targetImageId
   });
 
   return mapRef.id;
+}
+
+/**
+ * Synchronizes an AR clue to Firestore under a specific spatial map.
+ * 
+ * @param mapId - The Firestore ID of the spatial map
+ * @param clue - The clue data to persist
+ */
+export async function syncClueToCloud(mapId: string, clue: Clue): Promise<void> {
+  const clueRef = doc(db, 'spatial_maps', mapId, 'clues', clue.id);
+  await setDoc(clueRef, {
+    ...clue,
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+}
+
+/**
+ * Retrieves all clues associated with a spatial map from Firestore.
+ * 
+ * @param mapId - The Firestore ID of the spatial map
+ */
+export async function getClues(mapId: string): Promise<Clue[]> {
+  const cluesCol = collection(db, 'spatial_maps', mapId, 'clues');
+  const snapshot = await getDocs(cluesCol);
+  return snapshot.docs.map(doc => doc.data() as Clue);
+}
+
+/**
+ * Retrieves all spatial maps available in the cloud.
+ */
+export async function getSpatialMaps(): Promise<SpatialMapMetadata[]> {
+  const mapsCol = collection(db, 'spatial_maps');
+  const snapshot = await getDocs(mapsCol);
+  return snapshot.docs.map(doc => doc.data() as SpatialMapMetadata);
 }
