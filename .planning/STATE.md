@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-last_updated: "2026-04-18T14:20:20.763Z"
+status: Ready to plan
+last_updated: "2026-04-18T14:26:32.845Z"
 progress:
   total_phases: 11
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 13
-  completed_plans: 12
-  percent: 92
+  completed_plans: 13
+  percent: 100
 ---
 
 # Project State: Witcher Senses AR Engine
@@ -54,6 +54,8 @@ progress:
 - [Phase 04]: Clue Type Source of Truth: Clue types defined in a shared JSON file for consistency (D-04-01-01).
 - [Phase 04]: D-04-02-01: Used ViroQuad with -90 rotation on X axis for ground-aligned decals.
 - [Phase 04]: D-04-02-02: Implemented a 50-clue limit in useCluePlacement to mitigate performance threats (T-04-02).
+- [Phase 04]: D-04-03-01: Marker-Relative Scene Hierarchy - Anchored clues as children of ViroARImageMarker for automatic relative transform handling.
+- [Phase 04]: D-04-03-02: Real-time Raycasting - Used performARHitTestWithRay on every frame for low-latency ghost preview and snapping.
 
 ### Blockers
 

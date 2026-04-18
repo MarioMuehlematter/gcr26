@@ -5,7 +5,7 @@
 - [x] **Phase 1: AR Engine Foundation** - Initialize AR environment and plane detection. (completed 2026-04-17)
 - [x] **Phase 2: Spatial Serialization** - Implement local saving and loading of SLAM maps. (completed 2026-04-17)
 - [x] **Phase 3: Site Recorder Tool** - Build the GM interface for scanning physical environments. (completed 2026-04-17)
-- [ ] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues.
+- [x] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues. (completed 2026-04-18)
 - [ ] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression.
 - [ ] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI.
 - [ ] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues.
@@ -69,7 +69,7 @@
 **Plans**: 3 plans
 - [x] 04-01-PLAN.md — Data & Services Foundation.
 - [x] 04-02-PLAN.md — Hook & UI Components.
-- [ ] 04-03-PLAN.md — Placement Screen & Integration.
+- [x] 04-03-PLAN.md — Placement Screen & Integration.
 **UI hint**: yes
 
 ### Phase 5: Narrative State Logic
@@ -151,7 +151,7 @@
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
-| 4. Clue Placement Tool | 0/3 | In Progress | - |
+| 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 0/0 | Not started | - |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
