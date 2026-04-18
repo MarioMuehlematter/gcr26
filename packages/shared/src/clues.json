@@ -1,0 +1,7 @@
+{
+  "types": [
+    { "id": "footprint", "name": "Footprint", "asset": "footprint.png" },
+    { "id": "bloodstain", "name": "Bloodstain", "asset": "bloodstain.png" },
+    { "id": "scuff", "name": "Scuff Mark", "asset": "scuff.png" }
+  ]
+}

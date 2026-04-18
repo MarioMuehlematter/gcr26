@@ -1,3 +1,5 @@
+import cluesConfig from './clues.json';
+
 // ─── Users ────────────────────────────────────────────────────────────────────
 
 export interface User {
@@ -136,9 +138,23 @@ export interface SpatialMapMetadata {
   fileUri: string; // Path in Expo FileSystem
   byteSize: number;
   targetImageId: string;
+  clueCount: number; // Added in Phase 4-01
 }
 
 export interface SpatialMap {
   metadata: SpatialMapMetadata;
   data: string; // Base64 encoded or binary blob reference
+}
+
+// ─── Clues ────────────────────────────────────────────────────────────────────
+
+export type ClueType = typeof cluesConfig.types[number]['id'];
+
+export interface Clue {
+  id: string;
+  type: ClueType;
+  position: [number, number, number]; // [x, y, z] offsets from landmark origin
+  rotation: [number, number, number]; // [rx, ry, rz] in degrees
+  scale: [number, number, number];
+  metadata: Record<string, any>;
 }
