@@ -9,7 +9,7 @@
 - [ ] **CORE-04**: Offline Preloading - Pre-cache maps and clue data for zero-connectivity environments.
 
 ### Investigation Gameplay
-- [ ] **PLAY-01**: "Witcher Sense" Activation - Visual filter/mode for clue hunting.
+- [x] **PLAY-01**: "Witcher Sense" Activation - Visual filter/mode for clue hunting.
 - [ ] **PLAY-02**: Visual Pulse/Glow - Subtle visual guidance to distant or hidden clues.
 - [ ] **PLAY-03**: Footstep Trail System - Narrative pathing between investigation points.
 - [ ] **PLAY-04**: Proximity Discovery - Clues reveal details only when player is within range (~2m).
@@ -40,7 +40,7 @@
 | CORE-02 | Phase 1 | Complete |
 | CORE-03 | Phase 2 | Complete |
 | CORE-04 | Phase 11 | Pending |
-| PLAY-01 | Phase 6 | Pending |
+| PLAY-01 | Phase 6 | Complete |
 | PLAY-02 | Phase 7 | Pending |
 | PLAY-03 | Phase 8 | Pending |
 | PLAY-04 | Phase 9 | Pending |
