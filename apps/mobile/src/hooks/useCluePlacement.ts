@@ -8,6 +8,7 @@ import * as mapService from '../services/mapService';
 export function useCluePlacement() {
   const [placedClues, setPlacedClues] = useState<Clue[]>([]);
   const [selectedClueType, setSelectedClueType] = useState<ClueType | null>(null);
+  const [selectedPrerequisiteId, setSelectedPrerequisiteId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   /**
@@ -28,7 +29,7 @@ export function useCluePlacement() {
   /**
    * Adds a new clue at the given position using the currently selected type.
    */
-  const addClue = useCallback((position: [number, number, number]) => {
+  const addClue = useCallback((position: [number, number, number], requiredClueId?: string | null) => {
     if (!selectedClueType) {
       console.warn('Cannot add clue: No clue type selected.');
       return null;
@@ -41,6 +42,7 @@ export function useCluePlacement() {
       rotation: [0, 0, 0],
       scale: [1, 1, 1], // Default scale for the billboard/decal
       metadata: {},
+      requiredClueId: requiredClueId || undefined,
     };
 
     setPlacedClues(prev => {
@@ -75,6 +77,8 @@ export function useCluePlacement() {
     placedClues,
     selectedClueType,
     setSelectedClueType,
+    selectedPrerequisiteId,
+    setSelectedPrerequisiteId,
     loading,
     loadClues,
     addClue,
