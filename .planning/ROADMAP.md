@@ -80,7 +80,10 @@
   1. GM can define a "discovery sequence" for clues in a mission via a management UI.
   2. Clues assigned to "Step 2" are invisible to players until "Step 1" is discovered.
   3. Game state updates in Firestore automatically when a clue is flagged as discovered.
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 05-01-PLAN.md — Data Model & Team State.
+- [ ] 05-02-PLAN.md — Player Investigation Loop.
+- [ ] 05-03-PLAN.md — GM Narrative Sequencing.
 
 ### Phase 6: Witcher Senses UI & Filter
 **Goal**: Implement the visual "hunting mode" for players.
@@ -152,7 +155,7 @@
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
-| 5. Narrative State Logic | 0/0 | Not started | - |
+| 5. Narrative State Logic | 0/3 | In Progress | - |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
