@@ -13,16 +13,25 @@ import {
   ViroText,
   ViroBox,
   ViroMaterials,
+  ViroARImageMarker,
 } from '@reactvision/react-viro';
 import { useARSession } from '../hooks/useARSession';
 import { storage, STORAGE_KEYS } from '../services/storage';
 import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
 import { RelocalizationOverlay } from '../components/RelocalizationOverlay';
+import { useUser } from '../hooks/useUser';
+import { useTeamState } from '../hooks/useTeamState';
+import { useInvestigation } from '../hooks/useInvestigation';
+import { useCluePlacement } from '../hooks/useCluePlacement';
+import { ClueBillboard } from '../components/ClueBillboard';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
   originMaterial: {
     diffuseColor: '#FF0000',
+  },
+  relocalizedMaterial: {
+    diffuseColor: '#00FF00',
   },
 });
 
@@ -31,10 +40,32 @@ ViroMaterials.createMaterials({
  * Renders the world origin marker and handles tracking updates.
  */
 const MainScene = (props: any) => {
-  const { onTrackingUpdated } = props.arSceneNavigator.viroAppProps;
+  const { 
+    onTrackingUpdated, 
+    activeImageTarget, 
+    onImageMarkerFound,
+    placedClues,
+    discoveredClueIds,
+    discoverClue
+  } = props.arSceneNavigator.viroAppProps;
 
   return (
     <ViroARScene onTrackingUpdated={onTrackingUpdated}>
+      {/* Image Landmark Relocalization (Gap Closure) */}
+      {activeImageTarget && (
+        <ViroARImageMarker 
+          target={activeImageTarget} 
+          onAnchorFound={onImageMarkerFound}
+        >
+          {/* Debug indicator that marker was seen */}
+          <ViroBox
+            position={[0, 0, 0]}
+            scale={[0.05, 0.01, 0.05]}
+            materials={['relocalizedMaterial']}
+          />
+        </ViroARImageMarker>
+      )}
+
       {/* Stable World Origin Marker (D-02) */}
       <ViroBox
         position={[0, 0, 0]}
@@ -47,6 +78,25 @@ const MainScene = (props: any) => {
         position={[0, 0.1, 0]}
         style={styles.originTextStyle}
       />
+
+      {/* Narrative Clues (ADM-03) */}
+      {placedClues.map((clue: any) => {
+        // D-02: Visibility Filtering
+        const isVisible = !clue.requiredClueId || discoveredClueIds.includes(clue.requiredClueId);
+        if (!isVisible) return null;
+
+        // Visual feedback if already discovered
+        const isDiscovered = discoveredClueIds.includes(clue.id);
+
+        return (
+          <ClueBillboard
+            key={clue.id}
+            clue={clue}
+            highlighted={isDiscovered}
+            onClick={() => !isDiscovered && discoverClue(clue.id)}
+          />
+        );
+      })}
 
       {/* Surface Detection Visualization (CORE-02, D-03, D-04) */}
       <ARPlaneVisualization alignment="Horizontal" />
@@ -94,10 +144,24 @@ export default function ARScreen({ navigation }: any) {
     onTrackingUpdated,
     relocalizing,
     relocalizationStatus,
+    activeImageTarget,
+    onImageMarkerFound,
     saveCurrentMap,
     loadMapAndRelocalize
   } = useARSession();
+  
+  const { profile } = useUser();
+  const { discoveredClueIds } = useTeamState(profile?.teamId || null);
+  const { discoverClue } = useInvestigation();
+  const { placedClues, loadClues } = useCluePlacement();
   const [initializing, setInitializing] = useState(true);
+
+  // Load clues when relocalization is successful
+  useEffect(() => {
+    if (relocalizationStatus === 'SUCCESS' && activeImageTarget) {
+      loadClues(activeImageTarget);
+    }
+  }, [relocalizationStatus, activeImageTarget, loadClues]);
 
   useEffect(() => {
     // Brief delay to ensure camera permissions and native modules are ready
@@ -110,7 +174,7 @@ export default function ARScreen({ navigation }: any) {
   const handleSaveMap = async () => {
     try {
       await saveCurrentMap(`Manual Save ${new Date().toLocaleTimeString()}`);
-      Alert.alert('Success', 'Spatial map saved successfully!');
+      Alert.alert('Success', 'Spatial metadata saved successfully!');
     } catch (e) {
       Alert.alert('Error', 'Failed to save spatial map');
     }
@@ -141,7 +205,14 @@ export default function ARScreen({ navigation }: any) {
         initialScene={{
           scene: MainScene as any,
         }}
-        viroAppProps={{ onTrackingUpdated }}
+        viroAppProps={{ 
+          onTrackingUpdated,
+          activeImageTarget,
+          onImageMarkerFound,
+          placedClues,
+          discoveredClueIds,
+          discoverClue
+        }}
         style={styles.f1}
       />
       
