@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet, Platform, Linking } from 'react-native';
 import { signOut } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -7,12 +7,14 @@ import { auth, db } from '../firebase';
 import { useUser } from '../hooks/useUser';
 import { useAuth } from '../hooks/useAuth';
 import GameScreen from './GameScreen';
+import MapSelectionModal from '../components/MapSelectionModal';
 
 const ADMIN_URL = 'https://gcr26-dev.netlify.app';
 
 export default function HomeScreen({ navigation }: any) {
   const { profile, loading } = useUser();
   const { user } = useAuth();
+  const [mapModalVisible, setMapModalVisible] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -50,6 +52,13 @@ export default function HomeScreen({ navigation }: any) {
           <Text style={styles.adminButtonText}>Record New Site →</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity 
+          style={[styles.recordButton, { backgroundColor: '#3498db' }]} 
+          onPress={() => setMapModalVisible(true)}
+        >
+          <Text style={styles.adminButtonText}>Place Clues →</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.adminButton} onPress={() => Linking.openURL(ADMIN_URL)}>
           <Text style={styles.adminButtonText}>Open Admin Panel →</Text>
         </TouchableOpacity>
@@ -57,6 +66,15 @@ export default function HomeScreen({ navigation }: any) {
         <TouchableOpacity style={styles.signOutButton} onPress={() => signOut(auth)}>
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
+
+        <MapSelectionModal
+          visible={mapModalVisible}
+          onClose={() => setMapModalVisible(false)}
+          onSelect={(mapId) => {
+            setMapModalVisible(false);
+            navigation.navigate('Placement', { mapId });
+          }}
+        />
       </View>
     );
   }

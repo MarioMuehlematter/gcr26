@@ -7,6 +7,7 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ARScreen from '../screens/ARScreen';
 import RecorderScreen from '../screens/RecorderScreen';
+import PlacementScreen from '../screens/PlacementScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +31,10 @@ export default function RootNavigator() {
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="AR" component={ARScreen} />
             {profile?.isAdmin && (
-              <Stack.Screen name="Recorder" component={RecorderScreen} />
+              <>
+                <Stack.Screen name="Recorder" component={RecorderScreen} />
+                <Stack.Screen name="Placement" component={PlacementScreen} />
+              </>
             )}
           </>
         ) : (
