@@ -6,7 +6,7 @@
 - [x] **Phase 2: Spatial Serialization** - Implement local saving and loading of SLAM maps. (completed 2026-04-17)
 - [x] **Phase 3: Site Recorder Tool** - Build the GM interface for scanning physical environments. (completed 2026-04-17)
 - [x] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues. (completed 2026-04-18)
-- [ ] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression.
+- [x] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression. (completed 2026-04-18)
 - [ ] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI.
 - [ ] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues.
 - [ ] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system.
@@ -82,8 +82,8 @@
   3. Game state updates in Firestore automatically when a clue is flagged as discovered.
 **Plans**: 3 plans
 - [x] 05-01-PLAN.md — Data Model & Team State.
-- [ ] 05-02-PLAN.md — Player Investigation Loop.
-- [ ] 05-03-PLAN.md — GM Narrative Sequencing.
+- [x] 05-02-PLAN.md — Player Investigation Loop.
+- [x] 05-03-PLAN.md — GM Narrative Sequencing.
 
 ### Phase 6: Witcher Senses UI & Filter
 **Goal**: Implement the visual "hunting mode" for players.
@@ -155,7 +155,7 @@
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
-| 5. Narrative State Logic | 1/3 | In Progress|  |
+| 5. Narrative State Logic | 3/3 | Complete   | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
