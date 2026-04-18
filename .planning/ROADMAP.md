@@ -66,7 +66,10 @@
   1. GM can select a 3D asset (footprint, bloodstain) from a mobile menu.
   2. GM can "drag and drop" the asset onto a detected plane in AR with < 5cm drift.
   3. Placed assets persist their position and orientation across app restarts.
-**Plans**: TBD
+**Plans**: 3 plans
+- [x] 04-01-PLAN.md — Data & Services Foundation.
+- [x] 04-02-PLAN.md — Hook & UI Components.
+- [ ] 04-03-PLAN.md — Placement Screen & Integration.
 **UI hint**: yes
 
 ### Phase 5: Narrative State Logic
@@ -148,7 +151,7 @@
 | 1. AR Engine Foundation | 3/3 | Complete    | 2026-04-17 |
 | 2. Spatial Serialization | 4/4 | Complete    | 2026-04-17 |
 | 3. Site Recorder Tool | 3/3 | Complete    | 2026-04-17 |
-| 4. Clue Placement Tool | 0/0 | Not started | - |
+| 4. Clue Placement Tool | 0/3 | In Progress | - |
 | 5. Narrative State Logic | 0/0 | Not started | - |
 | 6. Witcher Senses UI & Filter | 0/0 | Not started | - |
 | 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |

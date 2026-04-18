@@ -3,7 +3,7 @@
 ## v1 Requirements (MVP)
 
 ### AR Core & World Mapping
-- [ ] **CORE-01**: Precise SLAM Anchoring - Clues stay fixed to physical surfaces with minimal drift.
+- [x] **CORE-01**: Precise SLAM Anchoring - Clues stay fixed to physical surfaces with minimal drift.
 - [x] **CORE-02**: Plane Detection - Footprints and decals align correctly with detected floors/walls.
 - [x] **CORE-03**: Spatial Map Serialization - Save and load physical "site scans" for consistent clue placement.
 - [ ] **CORE-04**: Offline Preloading - Pre-cache maps and clue data for zero-connectivity environments.
@@ -17,7 +17,7 @@
 
 ### Admin Authoring
 - [x] **ADM-01**: Mobile Site Recorder - Tool for Game Masters to scan and map a physical room.
-- [ ] **ADM-02**: Clue Placer - AR tool to drop and orient clues onto physical planes.
+- [x] **ADM-02**: Clue Placer - AR tool to drop and orient clues onto physical planes.
 - [ ] **ADM-03**: Narrative Linker - Logic to connect clue discovery to game state (Linear Storyline).
 
 ## v2 Requirements (Deferred)
@@ -36,7 +36,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CORE-01 | Phase 4 | Pending |
+| CORE-01 | Phase 4 | Complete |
 | CORE-02 | Phase 1 | Complete |
 | CORE-03 | Phase 2 | Complete |
 | CORE-04 | Phase 11 | Pending |
@@ -46,5 +46,5 @@
 | PLAY-04 | Phase 9 | Pending |
 | PLAY-05 | Phase 10 | Pending |
 | ADM-01 | Phase 3 | Complete |
-| ADM-02 | Phase 4 | Pending |
+| ADM-02 | Phase 4 | Complete |
 | ADM-03 | Phase 5 | Pending |
