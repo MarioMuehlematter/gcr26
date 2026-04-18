@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-last_updated: "2026-04-18T22:19:04.508Z"
+last_updated: "2026-04-18T22:27:49.962Z"
 progress:
   total_phases: 11
   completed_phases: 5
   total_plans: 19
-  completed_plans: 17
-  percent: 89
+  completed_plans: 18
+  percent: 95
 ---
 
 # Project State: Witcher Senses AR Engine
@@ -22,9 +22,9 @@ progress:
 ## Current Position
 
 **Phase**: 6 - Witcher Senses UI & Filter
-**Plan**: 01/03
+**Plan**: 02/03
 **Status**: In Progress
-**Progress**: [███░░░░░░░] 33%
+**Progress**: [██████░░░░] 66%
 
 ## Performance Metrics
 
@@ -65,6 +65,8 @@ progress:
 - [Phase 05-narrative-state-logic]: Integrated prerequisite selection UI into the AR placement workflow using a stacked bottom-tray layout.
 - [Phase 6]: D-06-01-01: Use Medium haptic feedback for Witcher Senses activation.
 - [Phase 6]: D-06-01-02: Implement highlight as an overlay material in ClueBillboard.
+- [Phase 06]: D-06-02-01: Use pointerEvents="none" for visual overlay to avoid blocking AR scene interactions.
+- [Phase 06]: D-06-02-02: Use hold-to-activate (onPressIn/Out) interaction for immersive hunting mode simulation.
 
 ### Blockers
 
@@ -72,5 +74,5 @@ progress:
 
 ### Session Continuity
 
-- **Last Action**: Completed Phase 6 - Plan 01 (Foundation & Clue Highlights).
-- **Next Step**: Phase 6 - Plan 02 (Integration & Activation).
+- **Last Action**: Completed Phase 6 - Plan 02 (Interactive Activation & Overlay).
+- **Next Step**: Phase 6 - Plan 03 (System Integration).

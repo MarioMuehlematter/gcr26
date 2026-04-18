@@ -95,7 +95,7 @@
   3. Ambient world sounds are muffled/distorted while the sense is active.
 **Plans**: 3 plans
 - [x] 06-01-PLAN.md — Witcher Senses Foundation.
-- [ ] 06-02-PLAN.md — Interactive Activation & Overlay.
+- [x] 06-02-PLAN.md — Interactive Activation & Overlay.
 - [ ] 06-03-PLAN.md — HUD & Integration.
 **UI hint**: yes
 
