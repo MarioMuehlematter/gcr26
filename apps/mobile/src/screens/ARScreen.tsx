@@ -25,7 +25,9 @@ import { useInvestigation } from '../hooks/useInvestigation';
 import { useCluePlacement } from '../hooks/useCluePlacement';
 import { ClueBillboard } from '../components/ClueBillboard';
 import { useWitcherSenses } from '../hooks/useWitcherSenses';
+import { useClueGuidance } from '../hooks/useClueGuidance';
 import WitcherSenseOverlay from '../components/WitcherSenseOverlay';
+import ClueGuidanceHUD from '../components/ClueGuidanceHUD';
 import MedallionButton from '../components/MedallionButton';
 import { HuntingHUD } from '../components/HuntingHUD';
 import { DiscoveryNotification } from '../components/DiscoveryNotification';
@@ -52,11 +54,17 @@ const MainScene = (props: any) => {
     placedClues,
     discoveredClueIds,
     discoverClue,
-    witcherSensesActive
+    witcherSensesActive,
+    onCameraTransformUpdate,
+    nextClueId,
+    distance
   } = props.arSceneNavigator.viroAppProps;
 
   return (
-    <ViroARScene onTrackingUpdated={onTrackingUpdated}>
+    <ViroARScene 
+      onTrackingUpdated={onTrackingUpdated}
+      onCameraTransformUpdate={onCameraTransformUpdate}
+    >
       {/* Image Landmark Relocalization (Gap Closure) */}
       {activeImageTarget && (
         <ViroARImageMarker 
@@ -100,6 +108,8 @@ const MainScene = (props: any) => {
             clue={clue}
             highlighted={isDiscovered}
             witcherSensesActive={witcherSensesActive}
+            isNext={clue.id === nextClueId}
+            distance={distance}
             onClick={() => !isDiscovered && discoverClue(clue.id)}
           />
         );
@@ -162,6 +172,14 @@ export default function ARScreen({ navigation }: any) {
   const { discoverClue } = useInvestigation();
   const { placedClues, loadClues } = useCluePlacement();
   const { active: witcherSensesActive, setEnabled: setWitcherSensesEnabled, triggerDetectionHaptic } = useWitcherSenses();
+  
+  const [cameraTransform, setCameraTransform] = useState<any>(null);
+  const { nextClueId, distance, angle } = useClueGuidance(
+    placedClues,
+    discoveredClueIds,
+    cameraTransform
+  );
+
   const [initializing, setInitializing] = useState(true);
 
   // Trigger detection haptic when a new clue is discovered while senses are active
@@ -229,13 +247,19 @@ export default function ARScreen({ navigation }: any) {
           placedClues,
           discoveredClueIds,
           discoverClue,
-          witcherSensesActive
+          witcherSensesActive,
+          onCameraTransformUpdate: setCameraTransform,
+          nextClueId,
+          distance,
         }}
         style={styles.f1}
       />
       
       {/* Witcher Sense Visual Filter (D-01, D-02) */}
       <WitcherSenseOverlay active={witcherSensesActive} />
+
+      {/* Clue Guidance HUD (D-04) */}
+      <ClueGuidanceHUD active={witcherSensesActive} angle={angle} />
 
       {/* Tracking Status HUD - Hidden when senses active to reduce clutter */}
       {!witcherSensesActive && (
