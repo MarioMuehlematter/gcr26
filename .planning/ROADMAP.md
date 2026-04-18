@@ -107,7 +107,9 @@
   1. Distant clues emit a "pulse" visible through walls in Witcher Sense mode.
   2. A "glow" effect appears on clues when they enter the player's field of view.
   3. Pulse frequency increases as the player gets closer to the clue (visual sonar).
-**Plans**: TBD
+**Plans**: 2 plans
+- [ ] 07-01-PLAN.md — Guidance Logic & HUD Foundation.
+- [ ] 07-02-PLAN.md — AR Visuals & Screen Integration.
 
 ### Phase 8: Footstep Trails
 **Goal**: Create narrative paths between investigation points.
@@ -160,7 +162,7 @@
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
-| 7. Clue Guidance (Pulse/Glow) | 0/0 | Not started | - |
+| 7. Clue Guidance (Pulse/Glow) | 0/2 | Not started | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
