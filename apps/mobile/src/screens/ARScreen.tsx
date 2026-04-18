@@ -24,6 +24,11 @@ import { useTeamState } from '../hooks/useTeamState';
 import { useInvestigation } from '../hooks/useInvestigation';
 import { useCluePlacement } from '../hooks/useCluePlacement';
 import { ClueBillboard } from '../components/ClueBillboard';
+import { useWitcherSenses } from '../hooks/useWitcherSenses';
+import WitcherSenseOverlay from '../components/WitcherSenseOverlay';
+import MedallionButton from '../components/MedallionButton';
+import { HuntingHUD } from '../components/HuntingHUD';
+import { DiscoveryNotification } from '../components/DiscoveryNotification';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
@@ -46,7 +51,8 @@ const MainScene = (props: any) => {
     onImageMarkerFound,
     placedClues,
     discoveredClueIds,
-    discoverClue
+    discoverClue,
+    witcherSensesActive
   } = props.arSceneNavigator.viroAppProps;
 
   return (
@@ -93,6 +99,7 @@ const MainScene = (props: any) => {
             key={clue.id}
             clue={clue}
             highlighted={isDiscovered}
+            witcherSensesActive={witcherSensesActive}
             onClick={() => !isDiscovered && discoverClue(clue.id)}
           />
         );
@@ -154,7 +161,17 @@ export default function ARScreen({ navigation }: any) {
   const { discoveredClueIds } = useTeamState(profile?.teamId || null);
   const { discoverClue } = useInvestigation();
   const { placedClues, loadClues } = useCluePlacement();
+  const { active: witcherSensesActive, setEnabled: setWitcherSensesEnabled, triggerDetectionHaptic } = useWitcherSenses();
   const [initializing, setInitializing] = useState(true);
+
+  // Trigger detection haptic when a new clue is discovered while senses are active
+  const prevClueCount = React.useRef(discoveredClueIds.length);
+  useEffect(() => {
+    if (witcherSensesActive && discoveredClueIds.length > prevClueCount.current) {
+      triggerDetectionHaptic();
+    }
+    prevClueCount.current = discoveredClueIds.length;
+  }, [discoveredClueIds.length, witcherSensesActive, triggerDetectionHaptic]);
 
   // Load clues when relocalization is successful
   useEffect(() => {
@@ -211,43 +228,62 @@ export default function ARScreen({ navigation }: any) {
           onImageMarkerFound,
           placedClues,
           discoveredClueIds,
-          discoverClue
+          discoverClue,
+          witcherSensesActive
         }}
         style={styles.f1}
       />
       
-      {/* Tracking Status HUD */}
-      <HUD 
-        status={trackingStatus} 
-        relocalizationStatus={relocalizationStatus}
-      />
+      {/* Witcher Sense Visual Filter (D-01, D-02) */}
+      <WitcherSenseOverlay active={witcherSensesActive} />
+
+      {/* Tracking Status HUD - Hidden when senses active to reduce clutter */}
+      {!witcherSensesActive && (
+        <HUD 
+          status={trackingStatus} 
+          relocalizationStatus={relocalizationStatus}
+        />
+      )}
+
+      {/* Hunting HUD (D-05) */}
+      <HuntingHUD active={witcherSensesActive} />
+
+      {/* Discovery Notifications (D-06) */}
+      <DiscoveryNotification discoveredClueIds={discoveredClueIds} />
+
+      {/* Medallion Interaction Button (D-02, D-03) */}
+      <MedallionButton onToggle={setWitcherSensesEnabled} />
 
       {/* Relocalization Feedback Overlay (CORE-03) */}
       <RelocalizationOverlay visible={relocalizing} />
 
       {/* Debug Serialization Controls (Wave 3) */}
-      <View style={styles.debugControls}>
-        <TouchableOpacity style={styles.debugButton} onPress={handleSaveMap}>
-          <Text style={styles.debugButtonText}>Save Map</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.debugButton, relocalizing && styles.buttonDisabled]} 
-          onPress={handleLoadLastMap}
-          disabled={relocalizing}
-        >
-          <Text style={styles.debugButtonText}>
-            {relocalizing ? 'Relocalizing...' : 'Load Last Map'}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      {!witcherSensesActive && (
+        <View style={styles.debugControls}>
+          <TouchableOpacity style={styles.debugButton} onPress={handleSaveMap}>
+            <Text style={styles.debugButtonText}>Save Map</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.debugButton, relocalizing && styles.buttonDisabled]} 
+            onPress={handleLoadLastMap}
+            disabled={relocalizing}
+          >
+            <Text style={styles.debugButtonText}>
+              {relocalizing ? 'Relocalizing...' : 'Load Last Map'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* Navigation Controls */}
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.backButtonText}>Exit Investigation</Text>
-      </TouchableOpacity>
+      {!witcherSensesActive && (
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.backButtonText}>Exit Investigation</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
