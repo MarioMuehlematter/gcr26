@@ -8,7 +8,7 @@
 - [x] **Phase 4: Clue Placement Tool** - Create the AR tool for anchoring digital clues. (completed 2026-04-18)
 - [x] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression. (completed 2026-04-18)
 - [x] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI. (completed 2026-04-18)
-- [ ] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues.
+- [/] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues.
 - [ ] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system.
 - [ ] **Phase 9: Proximity Discovery** - Implement range-based clue reveal and detection.
 - [ ] **Phase 10: Evidence Log** - Build the 2D review system for discovered clues.
@@ -108,7 +108,7 @@
   2. A "glow" effect appears on clues when they enter the player's field of view.
   3. Pulse frequency increases as the player gets closer to the clue (visual sonar).
 **Plans**: 2 plans
-- [ ] 07-01-PLAN.md — Guidance Logic & HUD Foundation.
+- [x] 07-01-PLAN.md — Guidance Logic & HUD Foundation.
 - [ ] 07-02-PLAN.md — AR Visuals & Screen Integration.
 
 ### Phase 8: Footstep Trails
@@ -162,7 +162,7 @@
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
-| 7. Clue Guidance (Pulse/Glow) | 0/2 | Not started | - |
+| 7. Clue Guidance (Pulse/Glow) | 1/2 | In Progress | - |
 | 8. Footstep Trails | 0/0 | Not started | - |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
