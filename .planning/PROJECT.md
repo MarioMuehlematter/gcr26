@@ -22,15 +22,16 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Plane Detection (CORE-02)** — Verified in Phase 1.
 - ✓ **Spatial Map Serialization (CORE-03)** — Verified in Phase 2.
 - ✓ **Spatial Mapping Interface (ADM-01)** — Verified in Phase 3.
-- ✓ **Clue Placement Tool (ADM-02, CORE-01)** — Verified in Phase 4; GMs can drop and orient clues.
+- ✓ **Clue Placement Tool (ADM-02, CORE-01)** — Verified in Phase 4.
+- ✓ **Linear Investigation State (ADM-03)** — Verified in Phase 5; discovery sequenced via Firestore.
 
 ### Active (AR Engine Development)
 
 - [ ] **Offline Clue Persistence** — Ability to preload spatial maps and clue data for areas without connectivity.
 - [ ] **Hybrid Positioning** — Using GPS for area navigation and local spatial anchors for precise AR placement.
 - [ ] **Visual Discovery Logic** — Hidden clues that only manifest when viewed through the AR lens within specific range/orientation.
-- [ ] **Linear Investigation State** — Game state updates that trigger the next clue only after the previous one is "discovered."
 - [ ] **AR Rendering Pipeline** — Integration of `expo-gl` or a similar engine to render high-quality "witcher-style" indicators (trails, glows).
+- [ ] **Witcher Senses UI & Filter (PLAY-01)** — Grayscale + highlight filter for "hunting mode".
 
 ### Out of Scope
 
@@ -47,6 +48,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 | **Hybrid Navigation** | Use GPS to get to the "zone," then switch to local spatial coordinates for the hunt. | **Approved** |
 | **Authored Content Only** | Fixed locations allow for higher narrative quality and better environmental mapping. | **Approved** |
 | **Image Landmark Anchoring**| Adopted for Phase 2/3 Relocalization due to JS-bridge limitations for raw SLAM maps. | **Approved** |
+| **Team-based Narrative Sync**| Clue discovery is shared at the team level via Firestore array operations. | **Approved** |
 
 ## Evolution
 
@@ -66,4 +68,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 18, 2026 after Phase 4 completion*
+*Last updated: April 18, 2026 after Phase 5 completion*
