@@ -29,6 +29,7 @@ interface ClueBillboardProps {
   clue: Clue;
   highlighted?: boolean;
   onRotate?: (newRotation: [number, number, number]) => void;
+  onClick?: () => void;
 }
 
 /**
@@ -38,7 +39,8 @@ interface ClueBillboardProps {
 export const ClueBillboard: React.FC<ClueBillboardProps> = ({ 
   clue, 
   highlighted = false,
-  onRotate
+  onRotate,
+  onClick
 }) => {
   // Map clue type to material name defined above
   const materialName = `${clue.type}Material`;
@@ -63,6 +65,7 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
       rotation={clue.rotation}
       scale={clue.scale}
       onRotate={handleRotate}
+      onClick={onClick}
     >
       {/* 
         ViroQuad is used as a decal. 
@@ -73,6 +76,7 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
         width={0.2}  // Base size 20cm
         height={0.2} // Base size 20cm
         materials={materials}
+        onClick={onClick}
       />
     </ViroNode>
   );
