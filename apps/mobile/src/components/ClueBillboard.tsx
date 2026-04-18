@@ -23,11 +23,16 @@ ViroMaterials.createMaterials({
     diffuseColor: 'rgba(0, 255, 0, 0.3)',
     lightingModel: 'Constant',
   },
+  witcher_sense_highlight: {
+    diffuseColor: 'rgba(255, 100, 0, 0.5)', // Orange glow
+    lightingModel: 'Constant',
+  },
 });
 
 interface ClueBillboardProps {
   clue: Clue;
   highlighted?: boolean;
+  witcherSensesActive?: boolean;
   onRotate?: (newRotation: [number, number, number]) => void;
   onClick?: () => void;
 }
@@ -39,6 +44,7 @@ interface ClueBillboardProps {
 export const ClueBillboard: React.FC<ClueBillboardProps> = ({ 
   clue, 
   highlighted = false,
+  witcherSensesActive = false,
   onRotate,
   onClick
 }) => {
@@ -49,6 +55,10 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
   const materials = [materialName];
   if (highlighted) {
     materials.push('green_highlight');
+  }
+
+  if (witcherSensesActive) {
+    materials.push('witcher_sense_highlight');
   }
 
   const handleRotate = (rotateState: number, rotationFactor: number) => {
