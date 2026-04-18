@@ -1,6 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
-import { collection, doc, setDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs, serverTimestamp, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase';
 import { storage, STORAGE_KEYS } from './storage';
 import { SpatialMap, SpatialMapMetadata, Clue } from '@gcr26/shared';
@@ -176,4 +176,15 @@ export async function getSpatialMaps(): Promise<SpatialMapMetadata[]> {
   const mapsCol = collection(db, 'spatial_maps');
   const snapshot = await getDocs(mapsCol);
   return snapshot.docs.map(doc => doc.data() as SpatialMapMetadata);
+}
+
+/**
+ * Records a clue discovery for a team atomically.
+ */
+export async function recordClueDiscovery(teamId: string, clueId: string): Promise<void> {
+  const teamRef = doc(db, 'teams', teamId);
+  await updateDoc(teamRef, {
+    discoveredClueIds: arrayUnion(clueId),
+    lastDiscoveryAt: serverTimestamp(),
+  });
 }
