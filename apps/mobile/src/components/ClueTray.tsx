@@ -59,14 +59,8 @@ export const ClueTray: React.FC<ClueTrayProps> = ({ selectedType, onSelectType }
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     paddingVertical: 15,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
   },
   title: {
     color: '#fff',

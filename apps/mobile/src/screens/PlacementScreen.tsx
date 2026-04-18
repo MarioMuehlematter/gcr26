@@ -20,6 +20,7 @@ import { useRecorderSession } from '../hooks/useRecorderSession';
 import { useCluePlacement } from '../hooks/useCluePlacement';
 import LockingProgressRing from '../components/LockingProgressRing';
 import { ClueTray } from '../components/ClueTray';
+import { PrerequisitePicker } from '../components/PrerequisitePicker';
 import { ClueBillboard } from '../components/ClueBillboard';
 import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
 import MapSelectionModal from '../components/MapSelectionModal';
@@ -53,6 +54,7 @@ const PlacementScene = (props: any) => {
     locked,
     placedClues,
     selectedClueType,
+    selectedPrerequisiteId,
     addClue,
     updateClueRotation,
     landmarkPos,
@@ -73,8 +75,8 @@ const PlacementScene = (props: any) => {
       clickPos[2] - landmarkPos[2],
     ];
     
-    addClue(relPos);
-  }, [locked, selectedClueType, landmarkPos, addClue]);
+    addClue(relPos, selectedPrerequisiteId);
+  }, [locked, selectedClueType, selectedPrerequisiteId, landmarkPos, addClue]);
 
   // Snap-to-Plane Preview (Checker Issue 3)
   const onCameraTransformUpdate = useCallback(async (cameraTransform: any) => {
@@ -175,6 +177,8 @@ export default function PlacementScreen({ navigation, route }: any) {
     placedClues,
     selectedClueType,
     setSelectedClueType,
+    selectedPrerequisiteId,
+    setSelectedPrerequisiteId,
     loadClues,
     addClue,
     updateClueRotation,
@@ -242,6 +246,7 @@ export default function PlacementScreen({ navigation, route }: any) {
           locked,
           placedClues,
           selectedClueType,
+          selectedPrerequisiteId,
           addClue,
           updateClueRotation,
           landmarkPos,
@@ -267,12 +272,19 @@ export default function PlacementScreen({ navigation, route }: any) {
         </View>
       </View>
 
-      {/* Asset Tray (Bottom) */}
+      {/* Narrative & Asset Trays (Bottom) */}
       {locked && (
-        <ClueTray 
-          selectedType={selectedClueType}
-          onSelectType={setSelectedClueType}
-        />
+        <View style={styles.bottomTrays}>
+          <PrerequisitePicker
+            clues={placedClues}
+            value={selectedPrerequisiteId}
+            onChange={setSelectedPrerequisiteId}
+          />
+          <ClueTray 
+            selectedType={selectedClueType}
+            onSelectType={setSelectedClueType}
+          />
+        </View>
       )}
 
       {/* Action Buttons (Top) */}
@@ -365,6 +377,12 @@ const styles = StyleSheet.create({
   },
   statusYellow: {
     color: '#FACC15',
+  },
+  bottomTrays: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   topButtonContainer: {
     position: 'absolute',
