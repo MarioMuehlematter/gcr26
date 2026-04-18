@@ -21,7 +21,8 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Admin Dashboard** — Web-based UI for managing games, quests, and players.
 - ✓ **Plane Detection (CORE-02)** — Verified in Phase 1.
 - ✓ **Spatial Map Serialization (CORE-03)** — Verified in Phase 2.
-- ✓ **Spatial Mapping Interface (ADM-01)** — Verified in Phase 3; GMs can record and sync sites.
+- ✓ **Spatial Mapping Interface (ADM-01)** — Verified in Phase 3.
+- ✓ **Clue Placement Tool (ADM-02, CORE-01)** — Verified in Phase 4; GMs can drop and orient clues.
 
 ### Active (AR Engine Development)
 
@@ -30,7 +31,6 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - [ ] **Visual Discovery Logic** — Hidden clues that only manifest when viewed through the AR lens within specific range/orientation.
 - [ ] **Linear Investigation State** — Game state updates that trigger the next clue only after the previous one is "discovered."
 - [ ] **AR Rendering Pipeline** — Integration of `expo-gl` or a similar engine to render high-quality "witcher-style" indicators (trails, glows).
-- [ ] **Clue Placement Tool (ADM-02, CORE-01)** — AR tool to drop and orient clues on planes.
 
 ### Out of Scope
 
@@ -66,4 +66,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 17, 2026 after Phase 3 completion*
+*Last updated: April 18, 2026 after Phase 4 completion*
