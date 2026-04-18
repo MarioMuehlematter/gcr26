@@ -25,6 +25,8 @@ export interface Team {
   currentQuestId: string | null;
   completedQuestIds: string[];
   finishedAt: number | null;
+  discoveredClueIds: string[];
+  lastDiscoveryAt?: any;      // Firestore Timestamp
 }
 
 // ─── Quests ───────────────────────────────────────────────────────────────────
@@ -157,4 +159,5 @@ export interface Clue {
   rotation: [number, number, number]; // [rx, ry, rz] in degrees
   scale: [number, number, number];
   metadata: Record<string, any>;
+  requiredClueId?: string;
 }
