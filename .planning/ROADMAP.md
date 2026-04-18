@@ -109,7 +109,7 @@
   3. Pulse frequency increases as the player gets closer to the clue (visual sonar).
 **Plans**: 2 plans
 - [x] 07-01-PLAN.md — Guidance Logic & HUD Foundation.
-- [ ] 07-02-PLAN.md — AR Visuals & Screen Integration.
+- [x] 07-02-PLAN.md — AR Visuals & Screen Integration.
 
 ### Phase 8: Footstep Trails
 **Goal**: Create narrative paths between investigation points.
@@ -162,7 +162,7 @@
 | 4. Clue Placement Tool | 3/3 | Complete    | 2026-04-18 |
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
-| 7. Clue Guidance (Pulse/Glow) | 1/2 | In Progress | - |
+| 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
 | 8. Footstep Trails | 0/0 | Not started | - |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
