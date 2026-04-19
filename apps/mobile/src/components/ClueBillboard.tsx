@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   ViroNode,
   ViroQuad,
   ViroMaterials,
   ViroAnimations,
+  ViroText,
+  ViroStyleSheet,
 } from '@reactvision/react-viro';
 import { Clue } from '@gcr26/shared';
 
@@ -31,7 +33,7 @@ ViroMaterials.createMaterials({
 });
 
 /**
- * Register animations for the clue pulse effect.
+ * Register animations for the clue pulse effect and detail reveal.
  * Sinusoidal feel achieved by chaining In and Out animations.
  */
 ViroAnimations.registerAnimations({
@@ -51,6 +53,24 @@ ViroAnimations.registerAnimations({
     { properties: { scaleX: 1.35, scaleY: 1.35, scaleZ: 1.35, opacity: 0.7 }, duration: 250, easing: "EaseIn" },
     { properties: { scaleX: 1.0, scaleY: 1.0, scaleZ: 1.0, opacity: 1.0 }, duration: 250, easing: "EaseOut" },
   ],
+  scaleUp: {
+    properties: {
+      scaleX: 1.5,
+      scaleY: 1.5,
+      scaleZ: 1.5,
+    },
+    duration: 300,
+    easing: "EaseInEaseOut"
+  },
+  scaleDown: {
+    properties: {
+      scaleX: 1.0,
+      scaleY: 1.0,
+      scaleZ: 1.0,
+    },
+    duration: 300,
+    easing: "EaseInEaseOut"
+  }
 });
 
 interface ClueBillboardProps {
@@ -59,25 +79,40 @@ interface ClueBillboardProps {
   witcherSensesActive?: boolean;
   isNext?: boolean;
   distance?: number;
+  cameraPosition?: [number, number, number];
   onRotate?: (newRotation: [number, number, number]) => void;
   onClick?: () => void;
 }
 
 /**
  * A Viro component that renders a clue as a ground-aligned decal.
- * Supports visual highlighting to provide feedback during placement or selection.
+ * Supports visual highlighting and range-based detail reveal (D-04).
  */
 export const ClueBillboard: React.FC<ClueBillboardProps> = ({ 
   clue, 
   highlighted = false,
   witcherSensesActive = false,
   isNext = false,
-  distance = 100,
+  distance,
+  cameraPosition,
   onRotate,
   onClick
 }) => {
   // Map clue type to material name defined above
   const materialName = `${clue.type}Material`;
+
+  // Calculate local distance if cameraPosition is provided
+  const currentDistance = useMemo(() => {
+    if (cameraPosition) {
+      const dx = clue.position[0] - cameraPosition[0];
+      const dy = clue.position[1] - cameraPosition[1];
+      const dz = clue.position[2] - cameraPosition[2];
+      return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    }
+    return distance ?? 100;
+  }, [clue.position, cameraPosition, distance]);
+
+  const isNear = currentDistance <= 3.0;
 
   // Apply the base material, and overlay highlight if active
   const materials = [materialName];
@@ -103,11 +138,11 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
 
   if (witcherSensesActive && isNext) {
     runAnimation = true;
-    if (distance <= 2) {
+    if (currentDistance <= 2) {
       animationName = 'pulse_faster';
-    } else if (distance <= 5) {
+    } else if (currentDistance <= 5) {
       animationName = 'pulse_fast';
-    } else if (distance <= 10) {
+    } else if (currentDistance <= 10) {
       animationName = 'pulse_medium';
     } else {
       animationName = 'pulse_slow';
@@ -121,6 +156,10 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
       scale={clue.scale}
       onRotate={handleRotate}
       onClick={onClick}
+      animation={{
+        name: isNear ? "scaleUp" : "scaleDown",
+        run: true,
+      }}
     >
       {/* 
         ViroQuad is used as a decal. 
@@ -138,6 +177,28 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
           loop: true,
         }}
       />
+
+      {/* Hover Label (Detail Reveal - D-04) */}
+      {isNear && (
+        <ViroText
+          text={clue.name || clue.type}
+          position={[0, 0.2, 0]}
+          scale={[0.1, 0.1, 0.1]}
+          style={styles.clueLabel}
+          transformBehaviors={["billboard"]}
+        />
+      )}
     </ViroNode>
   );
 };
+
+const styles = ViroStyleSheet.create({
+  clueLabel: {
+    fontFamily: 'Arial',
+    fontSize: 20,
+    color: '#ffffff',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+});
+

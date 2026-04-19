@@ -62,6 +62,7 @@ const PlacementScene = (props: any) => {
   } = props.arSceneNavigator.viroAppProps;
 
   const [ghostClue, setGhostClue] = useState<Clue | null>(null);
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 0]);
   const sceneRef = useRef<any>(null);
 
   // Interaction Logic: Relative Math (D-03)
@@ -80,6 +81,8 @@ const PlacementScene = (props: any) => {
 
   // Snap-to-Plane Preview (Checker Issue 3)
   const onCameraTransformUpdate = useCallback(async (cameraTransform: any) => {
+    setCameraPosition(cameraTransform.position);
+
     // Only show ghost if we are locked and have a selection
     if (!locked || !selectedClueType || !sceneRef.current) {
       if (ghostClue) setGhostClue(null);
@@ -141,13 +144,18 @@ const PlacementScene = (props: any) => {
           <ClueBillboard 
             key={clue.id} 
             clue={clue} 
+            cameraPosition={cameraPosition}
             onRotate={(newRot) => updateClueRotation(clue.id, newRot)}
           />
         ))}
 
         {/* Ghost Preview with Highlight */}
         {ghostClue && (
-          <ClueBillboard clue={ghostClue} highlighted={true} />
+          <ClueBillboard 
+            clue={ghostClue} 
+            highlighted={true} 
+            cameraPosition={cameraPosition}
+          />
         )}
       </ViroARImageMarker>
 

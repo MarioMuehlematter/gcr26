@@ -114,6 +114,7 @@ const MainScene = (props: any) => {
             witcherSensesActive={witcherSensesActive}
             isNext={clue.id === nextClueId}
             distance={distance}
+            cameraPosition={cameraPosition}
             onClick={() => !isDiscovered && discoverClue(clue.id)}
           />
         );
