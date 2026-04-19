@@ -120,7 +120,7 @@
   2. Footprints align correctly with the floor surface without "floating".
   3. The trail direction correctly points from the source clue to the destination clue.
 **Plans**: 3 plans
-- [ ] 08-01-PLAN.md — Data Model & Pathing Logic.
+- [x] 08-01-PLAN.md — Data Model & Pathing Logic.
 - [ ] 08-02-PLAN.md — Footstep AR Components.
 - [ ] 08-03-PLAN.md — Investigation Integration.
 
@@ -166,7 +166,7 @@
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
-| 8. Footstep Trails | 0/3 | In Progress | - |
+| 8. Footstep Trails | 1/3 | In Progress|  |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
 | 11. Offline Preloading | 0/0 | Not started | - |
