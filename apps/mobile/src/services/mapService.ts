@@ -154,6 +154,8 @@ export async function syncClueToCloud(mapId: string, clue: Clue): Promise<void> 
   const clueRef = doc(db, 'spatial_maps', mapId, 'clues', clue.id);
   await setDoc(clueRef, {
     ...clue,
+    pathId: clue.pathId || null,
+    pathSequence: clue.pathSequence || null,
     updatedAt: serverTimestamp(),
   }, { merge: true });
 }
