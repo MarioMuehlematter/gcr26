@@ -10,7 +10,7 @@
 - [x] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI. (completed 2026-04-18)
 - [x] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues. (completed 2026-04-18)
 - [x] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system. (completed 2026-04-19)
-- [ ] **Phase 9: Proximity Discovery** - Implement range-based clue reveal and detection.
+- [x] **Phase 9: Proximity Discovery** - Implement range-based clue reveal and detection. (completed 2026-04-19)
 - [ ] **Phase 10: Evidence Log** - Build the 2D review system for discovered clues.
 - [ ] **Phase 11: Offline Preloading** - Enable full functionality for zero-connectivity areas.
 
@@ -170,6 +170,6 @@
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
 | 8. Footstep Trails | 3/3 | Complete    | 2026-04-19 |
-| 9. Proximity Discovery | 0/3 | Not started | - |
+| 9. Proximity Discovery | 3/3 | Complete    | 2026-04-19 |
 | 10. Evidence Log | 0/0 | Not started | - |
 | 11. Offline Preloading | 0/0 | Not started | - |
