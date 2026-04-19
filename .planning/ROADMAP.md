@@ -9,7 +9,7 @@
 - [x] **Phase 5: Narrative State Logic** - Connect clue discovery to linear game progression. (completed 2026-04-18)
 - [x] **Phase 6: Witcher Senses UI & Filter** - Implement the visual "hunting mode" and UI. (completed 2026-04-18)
 - [x] **Phase 7: Clue Guidance (Pulse/Glow)** - Add visual indicators to guide players to clues. (completed 2026-04-18)
-- [ ] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system.
+- [x] **Phase 8: Footstep Trails** - Implement the grounded narrative pathing system. (completed 2026-04-19)
 - [ ] **Phase 9: Proximity Discovery** - Implement range-based clue reveal and detection.
 - [ ] **Phase 10: Evidence Log** - Build the 2D review system for discovered clues.
 - [ ] **Phase 11: Offline Preloading** - Enable full functionality for zero-connectivity areas.
@@ -122,7 +122,7 @@
 **Plans**: 3 plans
 - [x] 08-01-PLAN.md — Data Model & Pathing Logic.
 - [x] 08-02-PLAN.md — Footstep AR Components.
-- [ ] 08-03-PLAN.md — Investigation Integration.
+- [x] 08-03-PLAN.md — Investigation Integration.
 
 ### Phase 9: Proximity Discovery
 **Goal**: Implement interactive range-based clue reveal.
@@ -166,7 +166,7 @@
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
-| 8. Footstep Trails | 1/3 | In Progress|  |
+| 8. Footstep Trails | 3/3 | Complete   | 2026-04-19 |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
 | 11. Offline Preloading | 0/0 | Not started | - |
