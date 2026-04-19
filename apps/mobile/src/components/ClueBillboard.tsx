@@ -82,6 +82,7 @@ interface ClueBillboardProps {
   cameraPosition?: [number, number, number];
   onRotate?: (newRotation: [number, number, number]) => void;
   onClick?: () => void;
+  discoveryProgress?: number;
 }
 
 /**
@@ -96,7 +97,8 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
   distance,
   cameraPosition,
   onRotate,
-  onClick
+  onClick,
+  discoveryProgress = 0
 }) => {
   // Map clue type to material name defined above
   const materialName = `${clue.type}Material`;
@@ -138,11 +140,12 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
 
   if (witcherSensesActive && isNext) {
     runAnimation = true;
-    if (currentDistance <= 2) {
+    // If we are actively scanning/focusing, use the fastest pulse
+    if (discoveryProgress > 0) {
       animationName = 'pulse_faster';
-    } else if (currentDistance <= 5) {
+    } else if (currentDistance <= 2) {
       animationName = 'pulse_fast';
-    } else if (currentDistance <= 10) {
+    } else if (currentDistance <= 5) {
       animationName = 'pulse_medium';
     } else {
       animationName = 'pulse_slow';
@@ -171,6 +174,7 @@ export const ClueBillboard: React.FC<ClueBillboardProps> = ({
         height={0.2} // Base size 20cm
         materials={materials}
         onClick={onClick}
+        opacity={1.0 - (discoveryProgress * 0.4)} // Dim slightly while analyzing to create contrast with UI
         animation={{
           name: animationName,
           run: runAnimation,

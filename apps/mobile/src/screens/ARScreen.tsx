@@ -33,6 +33,7 @@ import { HuntingHUD } from '../components/HuntingHUD';
 import { DiscoveryNotification } from '../components/DiscoveryNotification';
 import { useFootstepTrails } from '../hooks/useFootstepTrails';
 import { FootstepTrail } from '../components/FootstepTrail';
+import { useProximityDiscovery } from '../hooks/useProximityDiscovery';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
@@ -61,7 +62,9 @@ const MainScene = (props: any) => {
     nextClueId,
     distance,
     activeSegments,
-    cameraPosition
+    cameraPosition,
+    discoveryProgress,
+    isFocused
   } = props.arSceneNavigator.viroAppProps;
 
   return (
@@ -105,6 +108,7 @@ const MainScene = (props: any) => {
 
         // Visual feedback if already discovered
         const isDiscovered = discoveredClueIds.includes(clue.id);
+        const isTarget = clue.id === nextClueId;
 
         return (
           <ClueBillboard
@@ -112,9 +116,10 @@ const MainScene = (props: any) => {
             clue={clue}
             highlighted={isDiscovered}
             witcherSensesActive={witcherSensesActive}
-            isNext={clue.id === nextClueId}
+            isNext={isTarget}
             distance={distance}
             cameraPosition={cameraPosition}
+            discoveryProgress={isTarget && isFocused ? discoveryProgress : 0}
             onClick={() => !isDiscovered && discoverClue(clue.id)}
           />
         );
@@ -199,6 +204,13 @@ export default function ARScreen({ navigation }: any) {
   const { activeSegments } = useFootstepTrails(placedClues, discoveredClueIds);
   const cameraPosition = cameraTransform?.position || [0, 0, 0];
 
+  const { isFocused, discoveryProgress } = useProximityDiscovery(
+    witcherSensesActive,
+    placedClues,
+    discoveredClueIds,
+    cameraTransform
+  );
+
   const [initializing, setInitializing] = useState(true);
 
   // Trigger detection haptic when a new clue is discovered while senses are active
@@ -272,6 +284,8 @@ export default function ARScreen({ navigation }: any) {
           distance,
           activeSegments,
           cameraPosition,
+          discoveryProgress,
+          isFocused,
         }}
         style={styles.f1}
       />
@@ -291,7 +305,11 @@ export default function ARScreen({ navigation }: any) {
       )}
 
       {/* Hunting HUD (D-05) */}
-      <HuntingHUD active={witcherSensesActive} />
+      <HuntingHUD 
+        active={witcherSensesActive} 
+        discoveryProgress={discoveryProgress}
+        isScanning={isFocused}
+      />
 
       {/* Discovery Notifications (D-06) */}
       <DiscoveryNotification discoveredClueIds={discoveredClueIds} />
