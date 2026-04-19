@@ -31,6 +31,8 @@ import ClueGuidanceHUD from '../components/ClueGuidanceHUD';
 import MedallionButton from '../components/MedallionButton';
 import { HuntingHUD } from '../components/HuntingHUD';
 import { DiscoveryNotification } from '../components/DiscoveryNotification';
+import { useFootstepTrails } from '../hooks/useFootstepTrails';
+import { FootstepTrail } from '../components/FootstepTrail';
 
 // Define materials for AR objects
 ViroMaterials.createMaterials({
@@ -57,7 +59,9 @@ const MainScene = (props: any) => {
     witcherSensesActive,
     onCameraTransformUpdate,
     nextClueId,
-    distance
+    distance,
+    activeSegments,
+    cameraPosition
   } = props.arSceneNavigator.viroAppProps;
 
   return (
@@ -114,6 +118,17 @@ const MainScene = (props: any) => {
           />
         );
       })}
+
+      {/* Footstep Trails (PLAY-03) */}
+      {activeSegments.map((segment: any) => (
+        <FootstepTrail
+          key={`trail-${segment.startClue.id}-${segment.endClue.id}`}
+          startClue={segment.startClue}
+          endClue={segment.endClue}
+          witcherSensesActive={witcherSensesActive}
+          cameraPosition={cameraPosition}
+        />
+      ))}
 
       {/* Surface Detection Visualization (CORE-02, D-03, D-04) */}
       <ARPlaneVisualization alignment="Horizontal" />
@@ -179,6 +194,9 @@ export default function ARScreen({ navigation }: any) {
     discoveredClueIds,
     cameraTransform
   );
+
+  const { activeSegments } = useFootstepTrails(placedClues, discoveredClueIds);
+  const cameraPosition = cameraTransform?.position || [0, 0, 0];
 
   const [initializing, setInitializing] = useState(true);
 
@@ -251,6 +269,8 @@ export default function ARScreen({ navigation }: any) {
           onCameraTransformUpdate: setCameraTransform,
           nextClueId,
           distance,
+          activeSegments,
+          cameraPosition,
         }}
         style={styles.f1}
       />
