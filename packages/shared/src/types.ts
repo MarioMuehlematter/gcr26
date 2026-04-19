@@ -160,4 +160,6 @@ export interface Clue {
   scale: [number, number, number];
   metadata: Record<string, any>;
   requiredClueId?: string;
+  pathId?: string;
+  pathSequence?: number;
 }

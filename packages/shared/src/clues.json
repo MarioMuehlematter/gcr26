@@ -1,6 +1,8 @@
 {
   "types": [
     { "id": "footprint", "name": "Footprint", "asset": "footprint.png" },
+    { "id": "footprint_left", "name": "Footprint (Left)", "asset": "footprint.png" },
+    { "id": "footprint_right", "name": "Footprint (Right)", "asset": "footprint.png" },
     { "id": "bloodstain", "name": "Bloodstain", "asset": "bloodstain.png" },
     { "id": "scuff", "name": "Scuff Mark", "asset": "scuff.png" }
   ]
