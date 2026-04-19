@@ -133,7 +133,7 @@
   2. Auto-discovery triggers when player focuses on clue at < 1.5 meters for 1 second.
   3. Visual feedback (progress ring) provided during scanning period.
 **Plans**: 3 plans
-- [ ] 09-01-PLAN.md — Proximity Detection Hook.
+- [x] 09-01-PLAN.md — Proximity Detection Hook.
 - [ ] 09-02-PLAN.md — AR Visual Extensions (Hover Labels).
 - [ ] 09-03-PLAN.md — Player Loop Integration.
 

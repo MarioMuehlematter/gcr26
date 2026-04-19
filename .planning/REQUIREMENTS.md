@@ -12,7 +12,7 @@
 - [x] **PLAY-01**: "Witcher Sense" Activation - Visual filter/mode for clue hunting.
 - [x] **PLAY-02**: Visual Pulse/Glow - Subtle visual guidance to distant or hidden clues.
 - [x] **PLAY-03**: Footstep Trail System - Narrative pathing between investigation points.
-- [ ] **PLAY-04**: Proximity Discovery - Clues reveal details only when player is within range (~2m).
+- [x] **PLAY-04**: Proximity Discovery - Clues reveal details only when player is within range (~2m).
 - [ ] **PLAY-05**: Evidence Log - 2D UI for reviewing found clues and narrative facts.
 
 ### Admin Authoring
@@ -43,7 +43,7 @@
 | PLAY-01 | Phase 6 | Complete |
 | PLAY-02 | Phase 7 | Complete |
 | PLAY-03 | Phase 8 | Complete |
-| PLAY-04 | Phase 9 | Pending |
+| PLAY-04 | Phase 9 | Complete |
 | PLAY-05 | Phase 10 | Pending |
 | ADM-01 | Phase 3 | Complete |
 | ADM-02 | Phase 4 | Complete |
