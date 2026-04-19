@@ -25,7 +25,8 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - ✓ **Clue Placement Tool (ADM-02, CORE-01)** — Verified in Phase 4.
 - ✓ **Linear Investigation State (ADM-03)** — Verified in Phase 5.
 - ✓ **Witcher Senses UI & Filter (PLAY-01)** — Verified in Phase 6.
-- ✓ **Clue Guidance (PLAY-02)** — Verified in Phase 7; pulse/glow and directional indicators implemented.
+- ✓ **Clue Guidance (PLAY-02)** — Verified in Phase 7.
+- ✓ **Footstep Trails (PLAY-03)** — Verified in Phase 8; grounded narrative pathing system.
 
 ### Active (AR Engine Development)
 
@@ -33,7 +34,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 - [ ] **Hybrid Positioning** — Using GPS for area navigation and local spatial anchors for precise AR placement.
 - [ ] **Visual Discovery Logic** — Hidden clues that only manifest when viewed through the AR lens within specific range/orientation.
 - [ ] **AR Rendering Pipeline** — Integration of `expo-gl` or a similar engine to render high-quality "witcher-style" indicators (trails, glows).
-- [ ] **Footstep Trails (PLAY-03)** — Grounded narrative pathing system.
+- [ ] **Proximity Discovery (PLAY-04)** — Range-based clue reveal.
 
 ### Out of Scope
 
@@ -53,6 +54,7 @@ The project adds a "Witcher Senses" mechanic to the existing Ludvia/gcr26 platfo
 | **Team-based Narrative Sync**| Clue discovery is shared at the team level via Firestore array operations. | **Approved** |
 | **Hold-to-Sense Pattern**| Players must actively hold a button to maintain "hunting mode," increasing immersion. | **Approved** |
 | **Proximity Sonar UI**| Visual pulse speed increases with proximity, providing intuitive "hot/cold" feedback. | **Approved** |
+| **Segmented Pathing**| Trails use individual decals instead of continuous ribbons for performance and "detective" feel. | **Approved** |
 
 ## Evolution
 
@@ -72,4 +74,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: April 18, 2026 after Phase 7 completion*
+*Last updated: April 19, 2026 after Phase 8 completion*
