@@ -19,6 +19,7 @@ import {
 import { useRecorderSession } from '../hooks/useRecorderSession';
 import LockingProgressRing from '../components/LockingProgressRing';
 import SiteNamingModal from '../components/SiteNamingModal';
+import { ARPlaneVisualization } from '../components/ARPlaneVisualization';
 import * as mapService from '../services/mapService';
 
 // Register a default tracking target for development/testing
@@ -73,6 +74,10 @@ const RecorderScene = (props: any) => {
           style={styles.originTextStyle}
         />
       </ViroARImageMarker>
+
+      {/* Surface Detection Feedback (GAP-01) */}
+      <ARPlaneVisualization alignment="Horizontal" />
+      <ARPlaneVisualization alignment="Vertical" />
 
       {/* Visual aid if not locked yet */}
       {!locked && (

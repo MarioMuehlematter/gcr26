@@ -1,6 +1,6 @@
-import { MMKV } from 'react-native-mmkv';
+import { createMMKV } from 'react-native-mmkv';
 
-export const storage = new MMKV({
+export const storage = createMMKV({
   id: 'gcr26-storage',
   encryptionKey: 'witcher-senses-secret', // Optional, per D-02 security
 });
