@@ -134,8 +134,8 @@
   3. Visual feedback (progress ring) provided during scanning period.
 **Plans**: 3 plans
 - [x] 09-01-PLAN.md — Proximity Detection Hook.
-- [ ] 09-02-PLAN.md — AR Visual Extensions (Hover Labels).
-- [ ] 09-03-PLAN.md — Player Loop Integration.
+- [x] 09-02-PLAN.md — AR Visual Extensions (Hover Labels).
+- [x] 09-03-PLAN.md — Player Loop Integration.
 
 ### Phase 10: Evidence Log
 **Goal**: Build a review system for collected narrative facts.

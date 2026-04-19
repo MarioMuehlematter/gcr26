@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-last_updated: "2026-04-19T13:00:00.000Z"
+last_updated: "2026-04-19T12:57:51.535Z"
 progress:
   total_phases: 11
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 27
-  completed_plans: 25
-  percent: 93
+  completed_plans: 27
+  percent: 100
 ---
 
 # Project State: Witcher Senses AR Engine
@@ -82,6 +82,8 @@ progress:
 - [Phase 8]: D-05: Trail segments only appear after their origin clue is discovered.
 - [Phase 09]: useClueGuidance integration for distance/angle logic
 - [Phase 09]: 1-second focus timer with 100ms update frequency
+- [Phase 9]: Integration of useProximityDiscovery into ARScreen for automatic clue discovery.
+- [Phase 9]: Visual feedback for scanning progress in both HUD (ScanningProgress) and AR Scene (ClueBillboard opacity/pulse).
 
 ### Blockers
 
