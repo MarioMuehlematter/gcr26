@@ -121,7 +121,7 @@
   3. The trail direction correctly points from the source clue to the destination clue.
 **Plans**: 3 plans
 - [x] 08-01-PLAN.md — Data Model & Pathing Logic.
-- [ ] 08-02-PLAN.md — Footstep AR Components.
+- [x] 08-02-PLAN.md — Footstep AR Components.
 - [ ] 08-03-PLAN.md — Investigation Integration.
 
 ### Phase 9: Proximity Discovery
