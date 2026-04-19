@@ -166,7 +166,7 @@
 | 5. Narrative State Logic | 3/3 | Complete    | 2026-04-18 |
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
-| 8. Footstep Trails | 3/3 | Complete   | 2026-04-19 |
+| 8. Footstep Trails | 3/3 | Complete    | 2026-04-19 |
 | 9. Proximity Discovery | 0/0 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
 | 11. Offline Preloading | 0/0 | Not started | - |
