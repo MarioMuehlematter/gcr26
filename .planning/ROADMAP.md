@@ -129,10 +129,13 @@
 **Depends on**: Phase 7
 **Requirements**: PLAY-04
 **Success Criteria**:
-  1. Clues remain "hidden" (low opacity or placeholder) until player is within 5 meters.
-  2. Full clue detail (narrative text, high-res model) triggers at < 2 meters.
-  3. "Discovery" event fires only when player looks directly at the clue within range.
-**Plans**: TBD
+  1. Clues show hover labels (name/lore) only when player is within 3 meters.
+  2. Auto-discovery triggers when player focuses on clue at < 1.5 meters for 1 second.
+  3. Visual feedback (progress ring) provided during scanning period.
+**Plans**: 3 plans
+- [ ] 09-01-PLAN.md — Proximity Detection Hook.
+- [ ] 09-02-PLAN.md — AR Visual Extensions (Hover Labels).
+- [ ] 09-03-PLAN.md — Player Loop Integration.
 
 ### Phase 10: Evidence Log
 **Goal**: Build a review system for collected narrative facts.
@@ -167,6 +170,6 @@
 | 6. Witcher Senses UI & Filter | 3/3 | Complete    | 2026-04-18 |
 | 7. Clue Guidance (Pulse/Glow) | 2/2 | Complete    | 2026-04-18 |
 | 8. Footstep Trails | 3/3 | Complete    | 2026-04-19 |
-| 9. Proximity Discovery | 0/0 | Not started | - |
+| 9. Proximity Discovery | 0/3 | Not started | - |
 | 10. Evidence Log | 0/0 | Not started | - |
 | 11. Offline Preloading | 0/0 | Not started | - |
