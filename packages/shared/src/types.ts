@@ -23,9 +23,13 @@ export interface Team {
   currentQuestId: string | null;
   completedQuestIds: string[];
   finishedAt: number | null;
+  // ── Element-system fields (optional for backward compat) ──
+  currentElementId?: string | null;
+  completedElementIds?: string[];
+  unlockedSkillIds?: string[];
 }
 
-// ─── Quests ───────────────────────────────────────────────────────────────────
+// ─── Quests (legacy — preserved for backward compatibility) ───────────────────
 
 export interface Quest {
   id: string;
@@ -42,6 +46,97 @@ export interface Quest {
 export interface GeoPoint {
   lat: number;
   lng: number;
+}
+
+// ─── Game Elements ────────────────────────────────────────────────────────────
+// The element system generalises quests into a chain of typed nodes.
+// Each element is stored as MDX and rendered by the mobile client.
+
+export type ElementType = 'quest' | 'content' | 'reward' | 'fluff';
+
+// How an element becomes available to a team.
+export type TriggerType = 'sequential' | 'location' | 'manual';
+
+export interface ElementTrigger {
+  type: TriggerType;
+  /** For location triggers: geo-fence centre. */
+  location?: GeoPoint;
+  /** For location triggers: radius in metres. */
+  radius?: number;
+}
+
+/** Fields shared by every element. */
+interface BaseElement {
+  id: string;
+  type: ElementType;
+  title: string;
+  /** MDX source rendered by the client (story text, images, animations). */
+  mdxContent: string;
+  isActive: boolean;
+  trigger: ElementTrigger;
+  /** Default next element in the chain (null = end of story). */
+  nextElementId: string | null;
+}
+
+/** Asks the player for a text answer. Optionally requires a skill. */
+export interface QuestElement extends BaseElement {
+  type: 'quest';
+  navigationHint: string;
+  fenceRadius: number;
+  location: GeoPoint;
+  answers: string[];
+  hints: string[];
+  /** Skill the player must have unlocked to attempt this quest. */
+  skillId: string | null;
+}
+
+/** Story / information screen — no response required. */
+export interface ContentElement extends BaseElement {
+  type: 'content';
+}
+
+/** Reward types that can be granted to a team. */
+export type RewardKind = 'score' | 'skill' | 'item';
+
+export interface ElementReward {
+  kind: RewardKind;
+  /** Score points to add, or 1 for skill/item unlock. */
+  value: number;
+  /** For skill rewards — ID of the skill to unlock. */
+  skillId?: string;
+  /** For item rewards — type of shop item to grant. */
+  itemType?: ItemType;
+}
+
+/** Shows a reward screen and updates team resources in the backend. */
+export interface RewardElement extends BaseElement {
+  type: 'reward';
+  rewards: ElementReward[];
+}
+
+export type FluffStyle = 'lootbox' | 'celebration' | 'transition';
+
+/** Pure UI fluff — haptic feedback, animations, no game-state change. */
+export interface FluffElement extends BaseElement {
+  type: 'fluff';
+  fluffStyle: FluffStyle;
+  /** How long the animation plays before auto-advancing (ms). */
+  durationMs: number;
+}
+
+/** Discriminated union of all element types. */
+export type GameElement = QuestElement | ContentElement | RewardElement | FluffElement;
+
+// ─── Skills ───────────────────────────────────────────────────────────────────
+
+export interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  /** MDX tutorial content shown when the skill is first unlocked. */
+  mdxContent: string;
+  /** Emoji or icon name for UI display. */
+  icon: string;
 }
 
 // ─── Items / Shop ─────────────────────────────────────────────────────────────
@@ -99,12 +194,14 @@ export interface Game {
   startDateTime: number;    // Unix timestamp
   city: string;
   cityCoordinates: GeoPoint;
-  questOrder: string[];     // ordered list of quest IDs (subcollection)
+  questOrder: string[];     // ordered list of quest IDs (subcollection) — legacy
   maxTeamSize?: number;     // optional soft limit shown in admin UI
   maxTeamSpreadMeters: number | null; // null = unlimited; blocks answer submission if exceeded
   pausedAt: number | null;  // timestamp when game was paused; null = not paused
   totalPausedMs: number;    // accumulated pause duration in ms (updated on resume)
   endedAt: number | null;   // timestamp when admin ended the game; null = not ended
+  // ── Element-system fields (optional for backward compat) ──
+  elementOrder?: string[];  // ordered list of element IDs (subcollection)
 }
 
 // ─── Settings ─────────────────────────────────────────────────────────────────
