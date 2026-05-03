@@ -30,8 +30,8 @@ Grand City Race uses a **playful, friendly claymorphic 3D aesthetic** inspired b
 ### Colors
 
 #### Primary Colors
-- **Grayish Lavender** (`#A294C8`) - Primary brand color, main CTAs, navigation highlights
-- **Dark Slate Purple** (`#74325C`) - Secondary brand color, text headings, important accents
+- **Gold** (`#DABB8C`) - Primary brand color, main CTAs, navigation highlights
+- **Grayish Lavender** (`#A294C8`) - Secondary brand color, text highlights, important accents
 
 #### Accent Colors
 - **Eosine Pink** (`#F3A0AA`) - Success states, celebrations, rewards, positive feedback
@@ -51,8 +51,9 @@ Grand City Race uses a **playful, friendly claymorphic 3D aesthetic** inspired b
 ### Typography
 
 #### Font Families
-- **Primary**: System UI, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
-- **Philosophy**: Keep it simple and native - no custom fonts
+- **Heading**: 'Fira Sans', sans-serif (Bold 700)
+- **Body**: 'Merriweather', serif (Regular 400)
+- **Philosophy**: Use consistent fonts across website and app to maintain brand integrity.
 
 #### Font Weights
 - Light: 300
@@ -232,3 +233,6 @@ The system emphasizes:
 - **Consistency**: Reusable patterns across platforms
 - **Accessibility**: Sufficient contrast and touch targets
 - **Performance**: Optimized illustrations and animations
+
+---
+**Reference:** [Google Stitch Design MD Overview](https://stitch.withgoogle.com/docs/design-md/overview?_hsmi=414957558)
